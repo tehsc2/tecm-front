@@ -1,4 +1,4 @@
-button {
+.btn-tcm {
   color: #fff;
   border-radius: 10px;
   background-color: #3f51b5;
@@ -31,7 +31,7 @@ a {
   letter-spacing: normal;
   text-align: center;
   display: block;
-  color: #565867;
+  color: #3f51b5;
 }
 
 label {

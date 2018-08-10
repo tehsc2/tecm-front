@@ -1,0 +1,28 @@
+<agm-map
+  [latitude]="lat"
+  [longitude]="lng"
+  [zoom]="zoom"
+  [disableDefaultUI]="false"
+  [zoomControl]="false"
+  (mapClick)="mapClicked($event)">
+
+  <agm-marker
+      *ngFor="let m of markers; let i = index"
+      (markerClick)="clickedMarker(m.label, i)"
+      [latitude]="m.lat"
+      [longitude]="m.lng"
+      [label]="m.label"
+      [markerDraggable]="m.draggable"
+      (dragEnd)="markerDragEnd(m, $event)">
+
+    <agm-info-window>
+      <strong>Scrum em 30 minutos!</strong><br>
+      Duração: 30 minutos<br>
+      Preço: R$ 25,00<br>
+      <button>Mais informações</button>
+      <button>Participar</button>
+    </agm-info-window>
+
+  </agm-marker>
+
+</agm-map>
