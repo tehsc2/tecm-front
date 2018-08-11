@@ -1,25 +1,28 @@
+<!--<pre>{{ usuario | json }}</pre>-->
+
 <agm-map
   [latitude]="lat"
   [longitude]="lng"
   [zoom]="zoom"
   [disableDefaultUI]="false"
   [zoomControl]="false"
-  (mapClick)="mapClicked($event)">
+  (mapClick)="mapClicked()">
 
   <agm-marker
-      *ngFor="let m of markers; let i = index"
-      (markerClick)="clickedMarker(m.label, i)"
+      *ngFor="let m of usuario.markers; let i = index"
+      (markerClick)="clickedMarker(infoWindow)"
       [latitude]="m.lat"
       [longitude]="m.lng"
       [label]="m.label"
       [markerDraggable]="m.draggable"
       (dragEnd)="markerDragEnd(m, $event)">
 
-    <agm-info-window>
-      <strong>Scrum em 30 minutos!</strong><br>
-      Duração: 30 minutos<br>
-      Preço: R$ 25,00<br>
-      <button>Mais informações</button>
+    <!-- Coloca como se fosse um ID no componente HTML -->
+    <agm-info-window #infoWindow>
+      <strong>{{m.aula.titulo}}</strong><br>
+      Duração: {{m.aula.duracao}}<br>
+      Preço: R$ {{m.aula.preco}}<br>
+      <button>Ver Instrutor</button>
       <button>Participar</button>
     </agm-info-window>
 
