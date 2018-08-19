@@ -22,10 +22,26 @@
       <strong>{{m.aula.titulo}}</strong><br>
       Duração: {{m.aula.duracao}}<br>
       Preço: R$ {{m.aula.preco}}<br>
-      <button>Ver Instrutor</button>
+      <button (click)='openVerticallyCentered(content)'>Ver Instrutor</button>
       <button>Participar</button>
     </agm-info-window>
 
+    <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title">{{m.aula.instrutor.nome}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Curso: {{m.aula.instrutor.curso}}</p>
+        <p>Membro desde: {{m.aula.instrutor.datacriacao}}</p>
+        <p>Avaliação: {{m.aula.instrutor.avaliacao}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+      </div>
+    </ng-template>
   </agm-marker>
 
 </agm-map>

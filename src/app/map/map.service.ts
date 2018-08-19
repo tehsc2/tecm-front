@@ -1,7 +1,7 @@
 import { MapModule } from './map.module';
-import { Injectable } from '../../../node_modules/@angular/core';
-import { Observable } from '../../../node_modules/rxjs';
-import { HttpClient } from '../../../node_modules/@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { Aula } from '../aula/aula';
 
 @Injectable({

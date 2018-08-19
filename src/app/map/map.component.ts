@@ -3,9 +3,8 @@ import { MouseEvent, AgmInfoWindow } from '@agm/core';
 import { MarkerInterface } from './marker';
 import { Aula } from '../aula/aula';
 import { UsuarioMarkerInterface, UsuarioMarker } from './usuarioMarker';
-import { Instrutor } from '../instrutor/instrutor';
-import { DOCUMENT } from '../../../node_modules/@angular/platform-browser';
-import { _document } from '../../../node_modules/@angular/platform-browser/src/browser';
+import { Instrutor } from './instrutor';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-map',
@@ -13,6 +12,7 @@ import { _document } from '../../../node_modules/@angular/platform-browser/src/b
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
+  closeResult: string;
   user: number;
   zoom: number;
   // google maps zoom level
@@ -24,7 +24,7 @@ export class MapComponent implements OnInit {
 
   infoWindowOpened = null;
 
-  constructor() { }
+  constructor(private modalService: NgbModal) {}
 
   ngOnInit() {
     // userId = pega o usuario da sessao
@@ -44,30 +44,61 @@ export class MapComponent implements OnInit {
         // colocar um icone no lugar do label
         label: 'A',
         draggable: false,
-        aula: new Aula('Scrum em 30 minutos!', 'TI', '30 m', 30.00, new Instrutor())
+        aula: new Aula(
+          'Scrum em 30 minutos!',
+          'TI',
+          '30 m',
+          30.0,
+          new Instrutor(
+            'Esther Souza',
+            'Ciência da Computação',
+            '19/08/2018',
+            '3.5'
+          )
+        )
       },
       {
         lat: -23.5519816,
         lng: -46.5977289,
         label: 'B',
         draggable: false,
-        aula: new Aula('Direito Penal Básico', 'Direito', '1 h', 35.00, new Instrutor())
+        aula: new Aula(
+          'Direito Penal Básico',
+          'Direito',
+          '1 h',
+          35.0,
+          new Instrutor(
+            'Henrique Ferreira',
+            'Direito',
+            '17/12/2017',
+            '2.0'
+          )
+        )
       },
       {
         lat: -23.55196,
         lng: -46.5972715,
         label: 'C',
         draggable: false,
-        aula: new Aula('Excel Básico', 'TODOS', '1 h', 20.00, new Instrutor())
+        aula: new Aula('Excel Básico', 'TODOS', '1 h', 20.0, new Instrutor(
+          'Claudia Maria',
+          'Informática',
+          '13/03/2018',
+          '4.5'
+        ))
       }
     ];
 
     this.usuario = new UsuarioMarker(this.user, this.markers);
   }
 
+  openVerticallyCentered(content) {
+    this.modalService.open(content, { centered: true });
+  }
+
   // Fecha a info window se for abrir outra
   clickedMarker(infoWindow: AgmInfoWindow) {
-    if (this.infoWindowOpened ===  infoWindow ) {
+    if (this.infoWindowOpened === infoWindow) {
       return;
     }
     if (this.infoWindowOpened !== null) {

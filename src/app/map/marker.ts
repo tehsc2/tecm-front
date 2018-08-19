@@ -1,4 +1,5 @@
 import { Aula } from '../aula/aula';
+import { Instrutor } from './instrutor';
 
 // just an interface for type safety.
 export interface MarkerInterface {
@@ -14,5 +15,5 @@ export class Marker implements MarkerInterface {
   lng = -46.5997832;
   label = '';
   draggable = false;
-  aula = new Aula('', '', '', 0, []);
+  aula = new Aula('', '', '', 0, new Instrutor('', '', '', ''));
 }

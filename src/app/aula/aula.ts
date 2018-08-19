@@ -1,4 +1,4 @@
-import { Instrutor } from '../instrutor/instrutor';
+import { Instrutor } from '../map/instrutor';
 
 interface AulaInterface {
   titulo: string;
@@ -13,7 +13,7 @@ export class Aula {
   curso = '';
   duracao = '';
   preco = 0.0;
-  instrutor = new Instrutor();
+  instrutor = new Instrutor('', '', '', '');
 
   constructor(titulo: string, curso: string, duracao: string, preco: number, instrutor: Instrutor) {
     this.titulo = titulo;

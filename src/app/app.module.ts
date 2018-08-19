@@ -6,16 +6,14 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ModuloRoteador } from './app.routes';
 import { MapModule } from './map/map.module';
-import { AgmCoreModule } from '../../node_modules/@agm/core';
+import { AgmCoreModule } from '@agm/core';
 import { AulaComponent } from './aula/aula.component';
-import { InstrutorComponent } from './instrutor/instrutor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    AulaComponent,
-    InstrutorComponent,
+    AulaComponent
   ],
   imports: [
     HttpClientModule,
