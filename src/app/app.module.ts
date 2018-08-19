@@ -1,4 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -6,20 +5,25 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ModuloRoteador } from './app.routes';
 import { MapModule } from './map/map.module';
-import { AgmCoreModule } from '@agm/core';
 import { AulaComponent } from './aula/aula.component';
+import { HeaderComponent } from './components/header/header.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { CommonModule } from '../../node_modules/@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    AulaComponent
+    AulaComponent,
+    HeaderComponent
   ],
   imports: [
     HttpClientModule,
     FormsModule,
     MapModule,
-    ModuloRoteador
+    ModuloRoteador,
+    MatToolbarModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

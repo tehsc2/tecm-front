@@ -5,6 +5,7 @@ import { Aula } from '../aula/aula';
 import { UsuarioMarkerInterface, UsuarioMarker } from './usuarioMarker';
 import { Instrutor } from './instrutor';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { HeaderComponent } from '../components/header/header.component';
 
 @Component({
   selector: 'app-map',
