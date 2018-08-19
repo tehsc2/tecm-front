@@ -36,7 +36,15 @@
       <div class="modal-body">
         <p>Curso: {{m.aula.instrutor.curso}}</p>
         <p>Membro desde: {{m.aula.instrutor.datacriacao}}</p>
-        <p>Avaliação: {{m.aula.instrutor.avaliacao}}</p>
+        <p>Avaliação:
+        <ng-template #t let-fill="fill">
+          <span class="star" [class.full]="fill === 100">
+            <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+          </span>
+        </ng-template>
+
+        <ngb-rating [(rate)]="m.aula.instrutor.avaliacao" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+        </p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>

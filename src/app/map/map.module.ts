@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { MapComponent } from './map.component';
 import { AgmCoreModule } from '@agm/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [MapComponent],
@@ -13,6 +13,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     apiKey: 'AIzaSyCjZOosnBXkgB7Rljg4gBlU-5084us38pE'
   }),
   BrowserModule,
-  NgbModalModule]
+  NgbModalModule,
+  NgbRatingModule]
 })
 export class MapModule {}
