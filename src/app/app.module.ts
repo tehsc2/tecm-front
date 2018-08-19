@@ -10,6 +10,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '../../node_modules/@angular/common';
 import { PagamentoComponent } from './pagamento/pagamento.component';
+import { CarrinhoComponent } from './carrinho/carrinho.component';
+import {MatCardModule} from '@angular/material/card';
+import { CadastroComponent } from './cadastro/cadastro.component';
+import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
+import { SuporteComponent } from './suporte/suporte.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +22,11 @@ import { PagamentoComponent } from './pagamento/pagamento.component';
     LoginComponent,
     AulaComponent,
     HeaderComponent,
-    PagamentoComponent
+    PagamentoComponent,
+    CarrinhoComponent,
+    CadastroComponent,
+    ConfiguracoesComponent,
+    SuporteComponent
   ],
   imports: [
     HttpClientModule,
@@ -25,7 +34,8 @@ import { PagamentoComponent } from './pagamento/pagamento.component';
     MapModule,
     ModuloRoteador,
     MatToolbarModule,
-    CommonModule
+    CommonModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
