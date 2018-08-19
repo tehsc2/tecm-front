@@ -9,13 +9,15 @@ import { AulaComponent } from './aula/aula.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '../../node_modules/@angular/common';
+import { PagamentoComponent } from './pagamento/pagamento.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AulaComponent,
-    HeaderComponent
+    HeaderComponent,
+    PagamentoComponent
   ],
   imports: [
     HttpClientModule,
