@@ -1,7 +1,18 @@
-<button mp-mode="dftl" class='blue-ar-l-rn-none c-button m-large pagar' name="MP-payButton" (click)="pagar()">
-  Pagar
+Saldo Atual: R$0,00
+
+<hr>
+Comprar créditos:<br><br>
+<button mp-mode="dftl" class='blue-ar-l-rn-none c-button m-large pagar' name="MP-payButton" (click)="pagar('https://www.mercadopago.com/mlb/checkout/start?pref_id=166987208-c9781467-4354-4552-9e4f-ccf5b066a156')">
+  R$20,00
 </button>
 
+<button mp-mode="dftl" class='blue-ar-l-rn-none c-button m-large pagar' name="MP-payButton" (click)="pagar('https://www.mercadopago.com/mlb/checkout/start?pref_id=166987208-7502c05c-a0d1-4a2a-9fdf-23b0bf020e68')">
+  R$50,00
+</button>
+
+<button mp-mode="dftl" class='blue-ar-l-rn-none c-button m-large pagar' name="MP-payButton" (click)="pagar('https://www.mercadopago.com/mlb/checkout/start?pref_id=166987208-16fbe4f1-68f4-476c-85ab-8dd6397d6846')">
+  R$100,00
+</button>
 <script type="text/javascript">
   (function () { function $MPC_load() { window.$MPC_loaded !== true && (function () { var s = document.createElement("script"); s.type = "text/javascript"; s.async = true; s.src = document.location.protocol + "//secure.mlstatic.com/mptools/render.js"; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x); window.$MPC_loaded = true; })(); } window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null; })();
 </script>

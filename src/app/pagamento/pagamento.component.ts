@@ -12,9 +12,7 @@ export class PagamentoComponent implements OnInit {
   ngOnInit() {
   }
 
-  pagar() {
-    const link =
-      'https://www.mercadopago.com/mlb/checkout/start?pref_id=166987208-c9781467-4354-4552-9e4f-ccf5b066a156';
+  pagar(link: string) {
     location.href = link;
   }
 

@@ -1,9 +1,22 @@
-<mat-toolbar>
-  <span>Teste</span>
-  <a routerLink="/perfil" class="btn btn-primary ml-4">Minha conta</a>
-  <a routerLink="/aulas" class="btn btn-primary ml-4">Aulas</a>
-  <a routerLink="/pagamento" class="btn btn-primary ml-4">Créditos</a>
-  <a routerLink="/configuracoes" class="btn btn-primary ml-4">Configurações</a>
-  <a routerLink="/historico" class="btn btn-primary ml-4">Histórico</a>
-  <a routerLink="/suporte" class="btn btn-primary ml-4">Suporte</a>
-</mat-toolbar>
+<nav class="navbar navbar-dark navbar-expand-lg sticky-top" style="background-color: #3f51b5">
+  <a class="navbar-brand" routerLink="/home">teach<b>me</b></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/perfil">Minha conta<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/aulas">Aulas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/pagamento">Créditos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/suporte">Suporte</a>
+      </li>
+    </ul>
+  </div>
+</nav>
