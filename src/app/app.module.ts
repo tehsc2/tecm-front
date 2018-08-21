@@ -15,6 +15,7 @@ import {MatCardModule} from '@angular/material/card';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
 import { SuporteComponent } from './suporte/suporte.component';
+import { EsqueciComponent } from './esqueci/esqueci.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SuporteComponent } from './suporte/suporte.component';
     CarrinhoComponent,
     CadastroComponent,
     ConfiguracoesComponent,
-    SuporteComponent
+    SuporteComponent,
+    EsqueciComponent
   ],
   imports: [
     HttpClientModule,
