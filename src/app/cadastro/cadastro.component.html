@@ -1,23 +1,27 @@
 <main class="container">
   <div class="row">
-    <form class="col-md-6 offset-md-3">
-        <h4>Cadastre-se</h4>
-        <div class="form-group">
-          <label>Nome: </label>
-          <input class="form-control">
-          <label>Gênero: </label>
-          <input type="radio">Feminino
-          <input type="radio">Masculino
-          <label >Data de Nascimento: </label>
-          <input class="form-control">
-          <label >E-mail: </label>
-          <input class="form-group">
-          <label>Curso: </label>
-          <input class="form-group">
-          <label >Senha: </label>
-          <input class="form-group">
-          <a routerLink="/home" class="btn btn-tcm">Cadastrar</a>
-        </div>
+    <form class="col-md-6 offset-md-3 mt-2">
+      <h4>Cadastre-se</h4>
+      <div class="form-group">
+        <label style="margin-top: 10px !important;">Nome </label>
+        <input class="form-control">
+        <label>Sexo </label>
+        <input type="radio" name="radiog_lite" id="radio1" class="css-checkbox" />
+        <label for="radio1" class="css-label radGroup1">Feminino</label>
+        <input type="radio" name="radiog_lite" id="radio2" class="css-checkbox" checked="checked" />
+        <label for="radio2" class="css-label radGroup1">Masculino</label>
+        <label>Data de Nascimento </label>
+        <input class="form-control">
+        <label>E-mail </label>
+        <input class="form-control">
+        <label>Curso </label>
+        <input class="form-control">
+        <label>Matrícula </label>
+        <input class="form-control">
+        <label>Senha </label>
+        <input class="form-control">
+        <a routerLink="/home" class="btn btn-tcm mt-4">Cadastrar</a>
+      </div>
     </form>
   </div>
 </main>

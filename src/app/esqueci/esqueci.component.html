@@ -1,1 +1,25 @@
-<mat-card></mat-card>
+<main>
+<mat-card style="max-width: 800px;" class="quiz-box">
+  <mat-card-header style="display: block !important; text-align: center;">
+    <mat-card-title>Recupere sua senha</mat-card-title>
+    <mat-card-subtitle> Insira o seu e-mail e enviaremos um link para uma nova senha!</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+      <div class="row">
+        <form class="col-md-6 offset-md-3">
+          <div class="form-group">
+            <label>E-mail </label>
+            <input class="form-control">
+            <label>Confirmar E-mail</label>
+            <input class="form-control">
+            <div class="buttons">
+              <a routerLink="/" class="btn btn-tcm-default mt-4">Voltar</a>
+              <a routerLink="/" class="btn btn-tcm mt-4">Enviar</a>
+            </div>
+          </div>
+        </form>
+      </div>
+  </mat-card-content>
+</mat-card>
+</main>

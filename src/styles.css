@@ -5,3 +5,8 @@ body {
   background-color: #fff;
   font-family: 'Raleway', sans-serif;
 }
+app-esqueci {
+  display: flex;
+  justify-content: center;
+  padding: 150px 5px 5px 5px;
+}

@@ -1,0 +1,58 @@
+.btn-tcm {
+  color: #fff;
+  border-radius: 10px;
+  background-color: #3f51b5;
+  font-weight: 500;
+  width: 100px;
+}
+
+.btn-tcm-default {
+  color: #fff;
+  border-radius: 10px;
+  background-color: #6f6f6f;
+  font-weight: 500;
+  width: 100px;
+}
+
+input {
+  border-radius: 10px;
+  background-color: #ffffff;
+  border: solid 1px #cccccc;
+}
+
+a {
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  display: absolute;
+  color: #3f51b5;
+}
+
+label {
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  display: block;
+  color: #565867;
+  margin-top: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.quiz-box {
+  height: 100%;
+  border: 3px solid rgba(255, 255, 255, 1);
+  background-color: #0027ff0f;
+  border-radius: 0px 0px;
+  box-shadow: 0px 0px 13px 2px rgb(0, 0, 0);
+}

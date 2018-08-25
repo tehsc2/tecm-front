@@ -6,7 +6,7 @@
 }
 
 h4 {
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 300;
   font-style: normal;
   font-stretch: normal;
@@ -41,7 +41,6 @@ label {
   font-stretch: normal;
   line-height: normal;
   letter-spacing: normal;
-  text-align: center;
   display: block;
   color: #565867;
 }

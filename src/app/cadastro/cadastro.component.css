@@ -43,4 +43,58 @@ label {
   letter-spacing: normal;
   display: block;
   color: #565867;
+  margin-right:20px;
+  margin-top: 15px;
+}
+
+input[type=radio].css-checkbox {
+  position:absolute;
+  z-index:-1000;
+  left:-1000px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height:1px;
+  width:1px;
+  margin:-1px;
+  padding:0;
+  border:0;
+}
+
+input[type=radio].css-checkbox {
+  position:absolute;
+  z-index:-1000;
+  left:-1000px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height:1px;
+  width:1px;
+  margin:-1px;
+  padding:0;
+  border:0;
+}
+
+input[type=radio].css-checkbox + label.css-label {
+	padding-left:26px;
+	height:21px;
+	display:inline-block;
+	background-repeat:no-repeat;
+	vertical-align:middle;
+	cursor:pointer;
+  transition: ease 200ms;
+  font-size: 15px !important;
+  margin-top: 7px !important;
+}
+
+input[type=radio].css-checkbox:checked + label.css-label {
+  background-position: 0 -21px;
+}
+
+label.css-label {
+  background-image: url(http://csscheckbox.com/checkboxes/u/csscheckbox_5ab92245cf78caac21ff087cfc374219.png);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+  user-select: none;
 }
