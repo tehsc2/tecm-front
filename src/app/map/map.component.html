@@ -7,17 +7,18 @@
   [zoomControl]="false"
   (mapClick)="mapClicked()">
 
-  <agm-marker
+  <agm-marker class="markers"
       *ngFor="let m of usuario.markers; let i = index"
       (markerClick)="clickedMarker(infoWindow)"
       [latitude]="m.lat"
       [longitude]="m.lng"
-      [label]="m.label"
       [markerDraggable]="m.draggable"
-      (dragEnd)="markerDragEnd(m, $event)">
+      (dragEnd)="markerDragEnd(m, $event)"
+      [iconUrl]="'/assets/img/graduated.png'">
 
     <!-- Coloca como se fosse um ID no componente HTML -->
     <agm-info-window #infoWindow>
+      url: {{m.iconUrl}}
       <strong>{{m.aula.titulo}}</strong><br>
       Duração: {{m.aula.duracao}}<br>
       Preço: R$ {{m.aula.preco}}<br>
@@ -33,6 +34,7 @@
         </button>
       </div>
       <div class="modal-body">
+        <img src="/assets/img/boy.png" class="img-fluid">
         <p>Curso: {{m.aula.instrutor.curso}}</p>
         <p>Membro desde: {{m.aula.instrutor.datacriacao}}</p>
         <p>Avaliação:

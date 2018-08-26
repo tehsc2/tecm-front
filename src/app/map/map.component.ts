@@ -43,7 +43,6 @@ export class MapComponent implements OnInit {
         lat: -23.5512998,
         lng: -46.5974544,
         // colocar um icone no lugar do label
-        label: 'A',
         draggable: false,
         aula: new Aula(
           'Scrum em 30 minutos!',
@@ -61,7 +60,6 @@ export class MapComponent implements OnInit {
       {
         lat: -23.5519816,
         lng: -46.5977289,
-        label: 'B',
         draggable: false,
         aula: new Aula(
           'Direito Penal Básico',
@@ -79,7 +77,6 @@ export class MapComponent implements OnInit {
       {
         lat: -23.55196,
         lng: -46.5972715,
-        label: 'C',
         draggable: false,
         aula: new Aula('Excel Básico', 'TODOS', '1 h', 20.0, new Instrutor(
           'Claudia Maria',

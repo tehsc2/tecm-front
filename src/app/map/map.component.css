@@ -2,11 +2,6 @@ agm-map {
   height: -webkit-fill-available;
 }
 
-
-* {
-  font-family: Lato;
-}
-
 a {
   color: darkblue;
 }
@@ -25,4 +20,8 @@ a {
   display: inline-block;
   overflow: hidden;
   color: red;
+}
+
+.markers {
+  icon: "/assets/img/graduated.png";
 }
