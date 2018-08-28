@@ -21,6 +21,8 @@ export class MapComponent implements OnInit {
   lng: number;
   markers: MarkerInterface[];
 
+  location: any = {};
+
   usuario: UsuarioMarkerInterface;
 
   infoWindowOpened = null;
@@ -28,10 +30,11 @@ export class MapComponent implements OnInit {
   constructor(private modalService: NgbModal) {}
 
   ngOnInit() {
+    this.mapClicked();
     // userId = pega o usuario da sessao
     this.user = 1;
     // zoom do mapa
-    this.zoom = 17.8;
+    this.zoom = 18;
     // latitude inicial = localizacao atual
     this.lat = -23.5519104;
     // longitude inicial = localizacao atual
@@ -108,9 +111,18 @@ export class MapComponent implements OnInit {
   // Atualizar a lista de aulas?
   mapClicked() {
     console.log('FORA DO MAPA');
-    const ht = document.getElementsByClassName('agm-info-window-content');
-    console.log(ht);
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((pos) => this.setPosition(pos));
+    } else {
+        console.log('Geolocation is not supported by this browser.');
+    }
   }
+
+  setPosition(position) {
+    console.log(position.coords);
+     this.lat = position.coords.latitude;
+     this.lng = position.coords.longitude;
+ }
 
   markerDragEnd(m: MarkerInterface, $event: MouseEvent) {
     console.log('dragEnd', m, $event);

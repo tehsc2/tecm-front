@@ -18,7 +18,6 @@
 
     <!-- Coloca como se fosse um ID no componente HTML -->
     <agm-info-window #infoWindow>
-      url: {{m.iconUrl}}
       <strong>{{m.aula.titulo}}</strong><br>
       Duração: {{m.aula.duracao}}<br>
       Preço: R$ {{m.aula.preco}}<br>
@@ -54,3 +53,18 @@
   </agm-marker>
 
 </agm-map>
+<script>
+function getLocation() {
+    if (navigator.geolocation) {
+      console.log('entrou no metodo')
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        console.log("Geolocation is not supported by this browser.");
+    }
+}
+
+function showPosition(position) {
+    console.log("Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude);
+}
+</script>
