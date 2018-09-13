@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../core/auth/auth.service';
+import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +11,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  loginForm: FormGroup;
+
+  constructor(public authService: AuthService,
+    private router: Router,
+    private fb: FormBuilder,
+    private appComponent: AppComponent) { this.createForm(); }
 
   ngOnInit() {
   }
 
+  createForm() {
+    this.loginForm = this.fb.group({
+      email: ['', Validators.required ],
+      password: ['', Validators.required]
+    });
+  }
+
+  tryFacebookLogin() {
+    this.authService.doFacebookLogin()
+    .then(res => {
+      this.router.navigate(['/home']);
+      this.appComponent.setLogged(true);
+    });
+  }
+
+  tryGoogleLogin() {
+    this.authService.doGoogleLogin()
+    .then(res => {
+      this.router.navigate(['/home']);
+      this.appComponent.setLogged(true);
+    });
+  }
+
+  tryLogin(value) {
+    this.authService.doLogin(value)
+    .then(res => {
+      this.router.navigate(['/home']);
+      this.appComponent.setLogged(true);
+    }, err => {
+      console.log(err);
+    });
+  }
 }

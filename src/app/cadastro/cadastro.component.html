@@ -20,9 +20,12 @@
         <input class="form-control">
         <label>Senha </label>
         <input class="form-control" type="password" formControlName="password">
-        <button type="button" class="btn btn-tcm mt-4" (click)="tryRegister(registerForm.value)">Cadastrar</button>
-        <button type="button" class="btn btn-tcm mt-4" (click)="tryFacebookLogin()">Cadastrar com Facebook</button>
-        <button type="button" class="btn btn-tcm mt-4" (click)="tryGoogleLogin()">Cadastrar com Gmail</button>
+        <button type="button" class="btn btn-tcm btn-lg btn-block mt-4" (click)="tryRegister(registerForm.value)">Cadastrar</button>
+
+        <div style="display: flex; justify-content: space-around; margin-top: 20px;" class="row">
+          <button type="button" class="loginBtn loginBtn--facebook" (click)="tryFacebookLogin()">Cadastrar com Facebook</button>
+          <button type="button" class="loginBtn loginBtn--google" (click)="tryGoogleLogin()">Cadastrar com Google</button>
+        </div>
       </div>
     </form>
   </div>

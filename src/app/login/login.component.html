@@ -1,19 +1,22 @@
 <main class="container">
   <div class="row">
-    <form class="col-md-6 offset-md-3">
+    <form class="col-md-6 offset-md-3" [formGroup]="loginForm">
       <img src="/assets/img/LOGO.png" class="img-fluid">
       <h4 style="margin-top: -20px;">Entre na sua conta</h4>
       <div class="form-group">
         <label>Usuário </label>
-        <input class="form-control">
+        <input class="form-control" type="email" formControlName="email">
         <label class="mt-2">Senha </label>
-        <input class="form-control">
-        <a routerLink="/home" class="btn btn-tcm btn-lg btn-block mt-4">Acessar Conta</a>
+        <input class="form-control" type="password" formControlName="password">
+        <button type="submit" (click)="tryLogin(loginForm.value)" class="btn btn-tcm btn-lg btn-block mt-4">Acessar Conta</button>
         <a class="mt-2" routerLink="/esqueci">Esqueci minha senha</a>
         <label style="text-align: center;" class="lb mt-3">Não possui uma conta?
           <a routerLink="/cadastro">Cadastre-se</a>
         </label>
-        <div style="text-align: center" class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="true"></div>
+        <div style="display: flex; justify-content: space-around; margin-top: 20px;" class="row">
+          <button type="button" class="loginBtn loginBtn--facebook" (click)="tryFacebookLogin()">Logar com Facebook</button>
+          <button type="button" class="loginBtn loginBtn--google" (click)="tryGoogleLogin()">Logar com Google</button>
+        </div>
       </div>
     </form>
   </div>

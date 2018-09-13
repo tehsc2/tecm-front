@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UsuarioMarker } from './map/usuarioMarker';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  status = false;
+  status = true;
 
   constructor() {
     this.setLogged(this.status);

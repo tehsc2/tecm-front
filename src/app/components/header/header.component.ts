@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { UsuarioMarker } from '../../map/usuarioMarker';
+import { FirebaseUserModel } from '../../core/auth/user.model';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +10,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   @Input() status: boolean;
-
+  nome = 'Esther';
   constructor() {
   }
 
