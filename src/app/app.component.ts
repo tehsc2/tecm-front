@@ -8,7 +8,7 @@ import { UsuarioMarker } from './map/usuarioMarker';
 })
 export class AppComponent {
 
-  status = true;
+  status = false;
 
   constructor() {
     this.setLogged(this.status);

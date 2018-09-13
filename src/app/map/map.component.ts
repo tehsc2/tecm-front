@@ -4,8 +4,7 @@ import { MarkerInterface } from './marker';
 import { Aula } from '../aula/aula';
 import { UsuarioMarkerInterface, UsuarioMarker } from './usuarioMarker';
 import { Instrutor } from './instrutor';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { HeaderComponent } from '../components/header/header.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-map',

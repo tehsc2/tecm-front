@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ModuloRoteador } from './app.routes';
-import { MapModule } from './map/map.module';
 import { AulaComponent } from './aula/aula.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -23,6 +22,11 @@ import { AuthService } from './core/auth/auth.service';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { UserService } from './core/auth/user.service';
 import { AuthGuard } from './core/auth/auth.guard';
+import { MapComponent } from './map/map.component';
+import { AgmCoreModule } from '@agm/core';
+import { NgbModalModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserModule } from '@angular/platform-browser';
+import { HeaderService } from './components/header/header.service';
 
 @NgModule({
   declarations: [
@@ -35,13 +39,14 @@ import { AuthGuard } from './core/auth/auth.guard';
     CadastroComponent,
     ConfiguracoesComponent,
     SuporteComponent,
-    EsqueciComponent
+    EsqueciComponent,
+    MapComponent
   ],
   imports: [
     HttpClientModule,
     FormsModule,
+    BrowserModule,
     ReactiveFormsModule,
-    MapModule,
     ModuloRoteador,
     MatToolbarModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -49,13 +54,21 @@ import { AuthGuard } from './core/auth/auth.guard';
     AngularFireAuthModule,
     CommonModule,
     MatCardModule,
+    AgmCoreModule.forRoot({
+      // please get your own API key here:
+      // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
+      apiKey: 'AIzaSyCjZOosnBXkgB7Rljg4gBlU-5084us38pE'
+    }),
+    NgbModalModule,
+    NgbRatingModule
   ],
   providers: [
     AngularFirestore,
     AngularFireAuth,
     AuthService,
     UserService,
-    AuthGuard
+    AuthGuard,
+    HeaderService
   ],
   bootstrap: [AppComponent]
 })

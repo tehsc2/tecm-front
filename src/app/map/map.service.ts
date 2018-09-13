@@ -1,12 +1,9 @@
-import { MapModule } from './map.module';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Aula } from '../aula/aula';
 
-@Injectable({
-  providedIn: MapModule
-})
+@Injectable()
 export class MapService {
 
   private url = 'http://localhost:8081/aulas';

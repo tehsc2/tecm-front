@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { UsuarioMarker } from '../../map/usuarioMarker';
-import { FirebaseUserModel } from '../../core/auth/user.model';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { HeaderService } from './header.service';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +9,11 @@ import { FirebaseUserModel } from '../../core/auth/user.model';
 export class HeaderComponent implements OnInit {
 
   @Input() status: boolean;
-  nome = 'Esther';
-  constructor() {
+  @Input() nome: String;
+  @Input() foto: String;
+  constructor(private header: HeaderService) {
+    this.nome = header.header.nome;
+    this.foto = header.header.foto;
   }
 
   ngOnInit() {
