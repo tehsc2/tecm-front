@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { UsuarioMarker } from './map/usuarioMarker';
 
 @Component({
   selector: 'app-root',

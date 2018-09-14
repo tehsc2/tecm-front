@@ -1,14 +1,17 @@
-<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #3f51b5;">
+<nav *ngIf="status" class="navbar navbar-expand-md navbar-dark sticky-top" style="background-color: #3f51b5;">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/aulas">Créditos </a>
+            <a class="nav-link" routerLink="/home">Home </a>
+        </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/aulas">Minhas Aulas</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/aulas">Configurações</a>
+        <a class="nav-link" routerLink="/pagamento">Configurações</a>
       </li>
     </ul>
     <div class="form-inline my-2 my-lg-0">
@@ -22,7 +25,7 @@
           <a class="dropdown-item" href="#">Perfil</a>
           <a class="dropdown-item" href="#">Ajuda</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Logout</a>
+          <a class="dropdown-item" (click)="logout()">Logout</a>
         </div>
       </li>
     </ul>

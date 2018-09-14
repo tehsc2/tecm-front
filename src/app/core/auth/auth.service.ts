@@ -17,8 +17,6 @@ export class AuthService implements OnInit {
       this.afAuth.auth
       .signInWithPopup(provider)
       .then(res => {
-        console.log(res.additionalUserInfo);
-        console.log(this.header);
         this.header.createHeader(res.user.displayName, res.user.photoURL, true);
         resolve(res);
       }, err => {
@@ -36,6 +34,7 @@ export class AuthService implements OnInit {
       this.afAuth.auth
       .signInWithPopup(provider)
       .then(res => {
+        this.header.createHeader(res.user.displayName, res.user.photoURL, true);
         resolve(res);
       }, err => {
         console.log(err);

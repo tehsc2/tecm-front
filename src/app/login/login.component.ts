@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../core/auth/auth.service';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
+import { UserService } from '../core/auth/user.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,10 @@ export class LoginComponent implements OnInit {
   constructor(public authService: AuthService,
     private router: Router,
     private fb: FormBuilder,
-    private appComponent: AppComponent) { this.createForm(); }
+    private appComponent: AppComponent, private user: UserService) {
+      console.log(this.user.getCurrentUser());
+      this.createForm();
+  }
 
   ngOnInit() {
   }

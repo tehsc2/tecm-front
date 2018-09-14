@@ -1,6 +1,6 @@
 import { Instrutor } from '../map/instrutor';
 
-interface AulaInterface {
+export interface AulaInterface {
   titulo: string;
   curso: string;
   duracao: string;
