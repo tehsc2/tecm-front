@@ -6,6 +6,7 @@ import { CarrinhoComponent } from './carrinho/carrinho.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { EsqueciComponent } from './esqueci/esqueci.component';
 import { AulaComponent } from './aula/aula.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
  const rotasApp: Routes = [
     {path: '', component: LoginComponent},
@@ -15,6 +16,7 @@ import { AulaComponent } from './aula/aula.component';
     {path: 'cadastro', component: CadastroComponent},
     {path: 'esqueci', component: EsqueciComponent},
     {path: 'aulas', component: AulaComponent},
+    {path: 'perfil', component: PerfilComponent},
     {path: '**', redirectTo: ''}
 ];
 

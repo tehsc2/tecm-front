@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserService } from './core/auth/user.service';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +10,20 @@ export class AppComponent {
 
   status = false;
 
-  constructor() {
-    this.setLogged(this.status);
+  constructor(private usuario: UserService) {
+    if (usuario.afAuth.auth.currentUser == null) {
+      this.status = false;
+      console.log('Nenhum usuário encontrado');
+    } else {
+      this.status = true;
+    }
   }
 
   setLogged(status: boolean) {
     this.status = status;
-    console.log('Status header: ' + this.status);
   }
 
   isLoggedIn(): boolean {
-    console.log('Status header now: ' + this.status);
     return this.status;
   }
 }

@@ -27,6 +27,7 @@ import { AgmCoreModule } from '@agm/core';
 import { NgbModalModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { HeaderService } from './components/header/header.service';
+import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { HeaderService } from './components/header/header.service';
     ConfiguracoesComponent,
     SuporteComponent,
     EsqueciComponent,
-    MapComponent
+    MapComponent,
+    PerfilComponent
   ],
   imports: [
     HttpClientModule,

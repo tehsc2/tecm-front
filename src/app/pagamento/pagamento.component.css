@@ -2,3 +2,9 @@
   max-width: 300px;
   margin: 30px auto 90px;
 }
+
+hr {
+  background-color: #3f51b5;
+  height: 1px;
+  border: 0;
+ }

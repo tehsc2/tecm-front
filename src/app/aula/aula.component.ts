@@ -59,6 +59,102 @@ export class AulaComponent implements OnInit {
             '17/12/2017',
             '2.0'
         )
+      },
+      {
+        titulo: 'Teste 5',
+        curso: 'Direito',
+        duracao: '20 min',
+        preco: 50.0,
+        instrutor: new Instrutor(
+          'Henrique Ferreira',
+            'Direito',
+            '17/12/2017',
+            '2.0'
+        )
+      },
+      {
+        titulo: 'Teste 6',
+        curso: 'Direito',
+        duracao: '20 min',
+        preco: 50.0,
+        instrutor: new Instrutor(
+          'Henrique Ferreira',
+            'Direito',
+            '17/12/2017',
+            '2.0'
+        )
+      },
+      {
+        titulo: 'Teste 7',
+        curso: 'Direito',
+        duracao: '20 min',
+        preco: 50.0,
+        instrutor: new Instrutor(
+          'Henrique Ferreira',
+            'Direito',
+            '17/12/2017',
+            '2.0'
+        )
+      },
+      {
+        titulo: 'Teste 8',
+        curso: 'Direito',
+        duracao: '20 min',
+        preco: 50.0,
+        instrutor: new Instrutor(
+          'Henrique Ferreira',
+            'Direito',
+            '17/12/2017',
+            '2.0'
+        )
+      },
+      {
+        titulo: 'Teste 9',
+        curso: 'Direito',
+        duracao: '20 min',
+        preco: 50.0,
+        instrutor: new Instrutor(
+          'Henrique Ferreira',
+            'Direito',
+            '17/12/2017',
+            '2.0'
+        )
+      },
+      {
+        titulo: 'Teste 10',
+        curso: 'Direito',
+        duracao: '20 min',
+        preco: 50.0,
+        instrutor: new Instrutor(
+          'Henrique Ferreira',
+            'Direito',
+            '17/12/2017',
+            '2.0'
+        )
+      },
+      {
+        titulo: 'Teste 11',
+        curso: 'Direito',
+        duracao: '20 min',
+        preco: 50.0,
+        instrutor: new Instrutor(
+          'Henrique Ferreira',
+            'Direito',
+            '17/12/2017',
+            '2.0'
+        )
+      },
+      {
+        titulo: 'Teste 12',
+        curso: 'Direito',
+        duracao: '20 min',
+        preco: 50.0,
+        instrutor: new Instrutor(
+          'Henrique Ferreira',
+            'Direito',
+            '17/12/2017',
+            '2.0'
+        )
       }
     ];
    }
