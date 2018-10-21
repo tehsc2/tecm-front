@@ -1,26 +1,37 @@
 <main class="container">
   <div class="row">
-    <form class="col-md-6 offset-md-3 mt-2" [formGroup]="registerForm">
+      <div>{{ usuarioForm.value | json}}</div>
+      <div>{{ usuarioForm.valid | json }}</div>
+    <form class="col-md-6 offset-md-3 mt-2" [formGroup]="usuarioForm" (ngSubmit)="enviarDados()">
       <h4>Cadastre-se</h4>
       <div class="form-group">
-        <label style="margin-top: 10px !important;">Nome </label>
-        <input class="form-control">
+        <label style="margin-top: 10px !important;" for="nome">Nome </label>
+        <input class="form-control" id="nome" type="text" formControlName="nome">
+
+        <p style="color:red" *ngIf="!usuarioForm.controls.nome.valid && submitted">Required</p>
+
         <label>Sexo </label>
-        <input type="radio" name="radiog_lite" id="radio1" class="css-checkbox" />
+        <input type="radio" name="sexo" id="radio1" class="css-checkbox" formControlName="sexo" value="FEMININO"/>
         <label for="radio1" class="css-label radGroup1">Feminino</label>
-        <input type="radio" name="radiog_lite" id="radio2" class="css-checkbox" checked="checked" />
+        <input type="radio" name="sexo" id="radio2" class="css-checkbox" checked="checked" formControlName="sexo" value="MASCULINO" />
         <label for="radio2" class="css-label radGroup1">Masculino</label>
-        <label>Data de Nascimento </label>
-        <input class="form-control">
+        <label>Idade </label>
+        <input class="form-control" type="number" formControlName="idade">
         <label>E-mail </label>
         <input class="form-control" type="email" formControlName="email">
         <label>Curso </label>
-        <input class="form-control">
-        <label>Matrícula </label>
-        <input class="form-control">
+        <input class="form-control" type="text" formControlName="curso">
+        <label>Universidade </label>
+        <input class="form-control" type="text" formControlName="universidade">
+        <label>Empresa </label>
+        <input class="form-control" type="text" formControlName="empresa">
+        <label>Profissão </label>
+        <input class="form-control" type="text" formControlName="profissao">
+        <label>Area </label>
+        <input class="form-control" type="text" formControlName="area">
         <label>Senha </label>
-        <input class="form-control" type="password" formControlName="password">
-        <button type="button" class="btn btn-tcm btn-lg btn-block mt-4" (click)="tryRegister(registerForm.value)">Cadastrar</button>
+        <input class="form-control" type="password" formControlName="senha">
+        <button type="submit" class="btn btn-tcm btn-lg btn-block mt-4" [disabled]="!usuarioForm.valid">Cadastrar</button>
 
         <div style="display: flex; justify-content: space-around; margin-top: 20px;" class="row">
           <button type="button" class="loginBtn loginBtn--facebook" (click)="tryFacebookLogin()">Cadastrar com Facebook</button>

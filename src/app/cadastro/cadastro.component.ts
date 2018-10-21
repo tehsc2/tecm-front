@@ -3,6 +3,7 @@ import { AuthService } from '../core/auth/auth.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AppComponent } from '../app.component';
+import { Usuario } from './usuario';
 
 @Component({
   selector: 'app-cadastro',
@@ -10,18 +11,49 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent {
+  submitted = false;
 
   registerForm: FormGroup;
+
+  usuarioForm: FormGroup;
+
+  usuario: Usuario;
 
   constructor(public authService: AuthService, private router: Router, private fb: FormBuilder, private appComponent: AppComponent) {
     this.createForm();
   }
 
-  createForm() {
+  get f() { return this.registerForm.controls; }
+
+  enviarDados() {
+    console.log(this.usuarioForm.value);
+    this.usuario = new Usuario(this.usuarioForm.value);
+
     this.registerForm = this.fb.group({
-      email: ['', Validators.required ],
-      password: ['', Validators.required]
-    });
+      email: [this.usuario.email],
+      password: [this.usuario.senha]
+    })
+    
+    console.log('Firebase Register:' + this.registerForm.value);
+
+    this.tryRegister(this.registerForm.value);
+  }
+
+  createForm() {
+    this.usuarioForm = this.fb.group({
+      id: [0],
+      nome: ['', Validators.compose([Validators.required])],
+      senha: ['', Validators.compose([Validators.minLength(6)])],
+      email: ['', Validators.compose([Validators.required])],
+      sexo: [''],
+      curso: [''],
+      universidade: [''],
+      conta: ['EMAIL'],
+      empresa: [''],
+      profissao: [''],
+      idade: [0],
+      area: ['']
+    })
   }
 
   tryFacebookLogin() {
@@ -29,7 +61,7 @@ export class CadastroComponent {
     .then(res => {
       this.appComponent.setLogged(true);
       this.router.navigate(['/home']);
-    }, err => console.log(err));
+    }, err => alert(err));
   }
 
   tryGoogleLogin() {
@@ -37,17 +69,17 @@ export class CadastroComponent {
     .then(res => {
       this.appComponent.setLogged(true);
       this.router.navigate(['/home']);
-    }, err => console.log(err));
+    }, err => alert(err));
   }
 
   tryRegister(value) {
-    this.authService.doRegister(value)
-    .then(res => {
-      this.appComponent.setLogged(true);
-      this.router.navigate(['/home']);
-    }, err => {
-      console.log(err);
-    });
-  }
+    console.log(value);
+      this.authService.doRegister(value)
+      .then(res => {
+        this.appComponent.setLogged(true);
 
+        }, err => {
+          alert(err);
+        });
+      }
 }
