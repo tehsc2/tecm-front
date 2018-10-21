@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AppComponent } from '../app.component';
 import { Usuario } from './usuario';
+import { AutenticacaoService } from './autenticacao.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -11,15 +12,13 @@ import { Usuario } from './usuario';
   styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent {
-  submitted = false;
-
   registerForm: FormGroup;
 
   usuarioForm: FormGroup;
 
   usuario: Usuario;
 
-  constructor(public authService: AuthService, private router: Router, private fb: FormBuilder, private appComponent: AppComponent) {
+  constructor(public authService: AuthService, private router: Router, private fb: FormBuilder, private appComponent: AppComponent, private service: AutenticacaoService) {
     this.createForm();
   }
 
@@ -77,7 +76,7 @@ export class CadastroComponent {
       this.authService.doRegister(value)
       .then(res => {
         this.appComponent.setLogged(true);
-
+        this.service.salvarUsuario(this.usuario);
         }, err => {
           alert(err);
         });

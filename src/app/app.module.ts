@@ -28,6 +28,7 @@ import { NgbModalModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { HeaderService } from './components/header/header.service';
 import { PerfilComponent } from './perfil/perfil.component';
+import { AutenticacaoService } from './cadastro/autenticacao.service';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     AuthService,
     UserService,
     AuthGuard,
-    HeaderService
+    HeaderService,
+    AutenticacaoService
   ],
   bootstrap: [AppComponent]
 })
