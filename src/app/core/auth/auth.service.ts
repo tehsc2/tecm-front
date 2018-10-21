@@ -2,13 +2,17 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { HeaderService } from '../../components/header/header.service';
+import { Usuario } from '../../cadastro/usuario';
 
 @Injectable()
 export class AuthService implements OnInit {
 
+  usuario: Usuario;
+
   constructor(public afAuth: AngularFireAuth, public header: HeaderService) { }
 
   ngOnInit() {
+    this.usuario = <Usuario> JSON.parse(localStorage.getItem('usuario'));
   }
 
   doFacebookLogin() {
@@ -47,6 +51,7 @@ export class AuthService implements OnInit {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
       .then(res => {
+        this.header.createHeader(this.usuario.nome, res.user.photoURL, true);
         resolve(res);
       }, err => reject(err));
     });

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from './core/auth/user.service';
+import { Usuario } from './cadastro/usuario';
+import { HeaderService } from './components/header/header.service';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +12,14 @@ export class AppComponent {
 
   status = false;
 
-  constructor(private usuario: UserService) {
-    if (usuario.afAuth.auth.currentUser == null) {
+  constructor(private header: HeaderService) {
+    let usuarioResponse = <Usuario> JSON.parse(localStorage.getItem('usuario'));
+
+    if (usuarioResponse == null) {
       this.status = false;
       console.log('Nenhum usuário encontrado');
     } else {
+      this.header.createHeader(usuarioResponse.nome, '', true);
       this.status = true;
     }
   }

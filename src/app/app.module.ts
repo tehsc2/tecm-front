@@ -29,6 +29,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HeaderService } from './components/header/header.service';
 import { PerfilComponent } from './perfil/perfil.component';
 import { AutenticacaoService } from './cadastro/autenticacao.service';
+import { RecomendacaoService } from './map/recomendacaoService.service';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { AutenticacaoService } from './cadastro/autenticacao.service';
     UserService,
     AuthGuard,
     HeaderService,
-    AutenticacaoService
+    AutenticacaoService,
+    RecomendacaoService
   ],
   bootstrap: [AppComponent]
 })

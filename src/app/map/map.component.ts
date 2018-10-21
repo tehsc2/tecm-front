@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MouseEvent, AgmInfoWindow } from '@agm/core';
-import { MarkerInterface } from './marker';
-import { Aula } from '../aula/aula';
+import { MarkerInterface, Marker } from './marker';
 import { UsuarioMarkerInterface, UsuarioMarker } from './usuarioMarker';
-import { Instrutor } from './instrutor';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Aula } from '../aula/aula';
+import { RecomendacaoService } from './recomendacaoService.service';
+import { Route, Router } from '../../../node_modules/@angular/router';
+import { Usuario } from '../cadastro/usuario';
+import { HeaderComponent } from '../components/header/header.component';
+import { HeaderService } from '../components/header/header.service';
 
 @Component({
   selector: 'app-map',
@@ -13,12 +17,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class MapComponent implements OnInit {
   closeResult: string;
-  user: number;
   zoom: number;
   // google maps zoom level
   lat: number;
   lng: number;
   markers: MarkerInterface[];
+
+  aulas: Aula[];
 
   location: any = {};
 
@@ -26,12 +31,16 @@ export class MapComponent implements OnInit {
 
   infoWindowOpened = null;
 
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private recomendacaoService: RecomendacaoService, private header: HeaderService) {
+
+  }
 
   ngOnInit() {
+    let usuarioResponse = <Usuario> JSON.parse(localStorage.getItem('usuario'));
+    this.header.createHeader(usuarioResponse.nome, '', true);
+
     this.mapClicked();
     // userId = pega o usuario da sessao
-    this.user = 1;
     // zoom do mapa
     this.zoom = 18;
     // latitude inicial = localizacao atual
@@ -39,57 +48,14 @@ export class MapComponent implements OnInit {
     // longitude inicial = localizacao atual
     this.lng = -46.5997832;
 
-    // lista que vai fazer o get para recuperar as aulas recomendadas
-    this.markers = [
-      {
-        lat: -23.5512998,
-        lng: -46.5974544,
-        // colocar um icone no lugar do label
-        draggable: false,
-        aula: new Aula(
-          'Scrum em 30 minutos!',
-          'TI',
-          '30 m',
-          30.0,
-          new Instrutor(
-            'Esther Souza',
-            'Ciência da Computação',
-            '19/08/2018',
-            '3.5'
-          )
-        )
-      },
-      {
-        lat: -23.5519816,
-        lng: -46.5977289,
-        draggable: false,
-        aula: new Aula(
-          'Direito Penal Básico',
-          'Direito',
-          '1 h',
-          35.0,
-          new Instrutor(
-            'Henrique Ferreira',
-            'Direito',
-            '17/12/2017',
-            '2.0'
-          )
-        )
-      },
-      {
-        lat: -23.55196,
-        lng: -46.5972715,
-        draggable: false,
-        aula: new Aula('Excel Básico', 'TODOS', '1 h', 20.0, new Instrutor(
-          'Claudia Maria',
-          'Informática',
-          '13/03/2018',
-          '4.5'
-        ))
-      }
-    ];
+    this.recomendacaoService.getRecomendacoes(this.usuario.userId).subscribe(
+      aulas => this.aulas = aulas,
+      error => alert(error));
 
-    this.usuario = new UsuarioMarker(this.user, this.markers);
+      this.usuario = new UsuarioMarkerInterface();
+
+      this.usuario.userId = usuarioResponse.id;
+      console.log(usuarioResponse);
   }
 
   openVerticallyCentered(content) {
