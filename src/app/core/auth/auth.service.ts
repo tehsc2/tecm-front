@@ -3,13 +3,14 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { HeaderService } from '../../components/header/header.service';
 import { Usuario } from '../../cadastro/usuario';
+import { Router } from '../../../../node_modules/@angular/router';
 
 @Injectable()
 export class AuthService implements OnInit {
 
   usuario: Usuario;
 
-  constructor(public afAuth: AngularFireAuth, public header: HeaderService) { }
+  constructor(public afAuth: AngularFireAuth, public header: HeaderService, private route: Router) { }
 
   ngOnInit() {
     this.usuario = <Usuario> JSON.parse(localStorage.getItem('usuario'));
@@ -67,14 +68,11 @@ export class AuthService implements OnInit {
   }
 
   doLogout() {
-    return new Promise((resolve, reject) => {
-      if (firebase.auth().currentUser) {
+    localStorage.removeItem('usuario');
         this.afAuth.auth.signOut();
-        resolve();
-      } else {
-        reject();
-      }
-    });
+        console.log('HEADER: ' + this.header);
+        location.reload();
+        this.route.navigate(['/']);
   }
 
 

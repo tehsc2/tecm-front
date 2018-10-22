@@ -5,9 +5,7 @@ import { UsuarioMarkerInterface, UsuarioMarker } from './usuarioMarker';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Aula } from '../aula/aula';
 import { RecomendacaoService } from './recomendacaoService.service';
-import { Route, Router } from '../../../node_modules/@angular/router';
 import { Usuario } from '../cadastro/usuario';
-import { HeaderComponent } from '../components/header/header.component';
 import { HeaderService } from '../components/header/header.service';
 
 @Component({
@@ -37,7 +35,6 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     let usuarioResponse = <Usuario> JSON.parse(localStorage.getItem('usuario'));
-    this.header.createHeader(usuarioResponse.nome, '', true);
 
     this.mapClicked();
     // userId = pega o usuario da sessao
