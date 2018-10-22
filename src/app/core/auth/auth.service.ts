@@ -52,9 +52,9 @@ export class AuthService implements OnInit {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
       .then(res => {
-        this.header.createHeader(this.usuario.nome, res.user.photoURL, true);
+        this.header.createHeader(value.email, '', true);
         resolve(res);
-      }, err => reject(err));
+      }, err => alert(err));
     });
   }
 
@@ -62,8 +62,9 @@ export class AuthService implements OnInit {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(value.email, value.password)
       .then(res => {
+        this.header.createHeader(value.email, '', true);
         resolve(res);
-      }, err => reject(err));
+      }, err => alert(err));
     });
   }
 

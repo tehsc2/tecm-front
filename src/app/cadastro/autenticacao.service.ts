@@ -9,7 +9,7 @@ import { MapComponent } from "../map/map.component";
 @Injectable()
 export class AutenticacaoService{
     ///ec2-13-59-220-29.us-east-2.compute.amazonaws.com
-    private url = 'http://localhost:8080/usuario';
+    private url = 'http://ec2-13-59-220-29.us-east-2.compute.amazonaws.com:8080/usuario';
 
     constructor(private http: HttpClient, private router: Router) {}
   

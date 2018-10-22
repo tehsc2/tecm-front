@@ -1,7 +1,5 @@
 <main class="container">
   <div class="row">
-      <div>{{ usuarioForm.value | json}}</div>
-      <div>{{ usuarioForm.valid | json }}</div>
     <form class="col-md-6 offset-md-3 mt-2" [formGroup]="usuarioForm" (ngSubmit)="enviarDados()">
       <h4>Cadastre-se</h4>
       <div class="form-group">
