@@ -45,14 +45,53 @@ export class MapComponent implements OnInit {
     // longitude inicial = localizacao atual
     this.lng = -46.5997832;
 
-    this.recomendacaoService.getRecomendacoes(this.usuario.userId).subscribe(
-      aulas => this.aulas = aulas,
-      error => alert(error));
+    // this.recomendacaoService.getRecomendacoes(this.usuario.userId).subscribe(
+    //   aulas => this.aulas = aulas,
+    //   error => alert(error));
 
       this.usuario = new UsuarioMarkerInterface();
 
-      this.usuario.userId = usuarioResponse.id;
-      console.log(usuarioResponse);
+      if(usuarioResponse == null){
+        this.usuario.userId = 1;
+      }
+      else{
+        this.usuario.userId = usuarioResponse.id;
+      }
+
+      this.markers = [
+        {
+          lat: -23.5512998,
+          lng: -46.5974544,
+          // colocar um icone no lugar do label
+          draggable: false,
+          aula: new Aula(1,
+            'Scrum em 30 minutos!',
+            'TI',
+            '30 m',
+            30.0
+          )
+        },
+        {
+          lat: -23.5519816,
+          lng: -46.5977289,
+          draggable: false,
+          aula: new Aula(2,
+            'Calculo I',
+            'Engenharia Elétrica',
+            '1 h',
+            35.0
+          )
+        },
+        {
+          lat: -23.55196,
+          lng: -46.5972715,
+          draggable: false,
+          aula: new Aula(3, 'Excel Básico', 'TODOS', '1 h', 20.0)
+        }
+      ];
+
+      this.usuario.markers = this.markers;
+      console.log(this.usuario);
   }
 
   openVerticallyCentered(content) {

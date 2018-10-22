@@ -26,16 +26,16 @@
 
     <ng-template #content let-c="close" let-d="dismiss">
       <div class="modal-header">
-        <h4 class="modal-title">{{m.aula.instrutor.nome}}</h4>
+        <h4 class="modal-title">Fernando Souza</h4>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <img src="/assets/img/boy.png" class="img-fluid">
-        <p>Curso: {{m.aula.instrutor.curso}}</p>
-        <p>Membro desde: {{m.aula.instrutor.datacriacao}}</p>
-        <p>Avaliação:
+        <p>Curso: Ciência da Computação</p>
+        <p>Universidade: USJT</p>
+        <!-- <p>Avaliação:
         <ng-template #t let-fill="fill">
           <span class="star" [class.full]="fill === 100">
             <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
@@ -43,7 +43,7 @@
         </ng-template>
 
         <ngb-rating [(rate)]="m.aula.instrutor.avaliacao" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
-        </p>
+        </p> -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>

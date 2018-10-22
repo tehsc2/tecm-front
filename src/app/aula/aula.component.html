@@ -1,4 +1,5 @@
 <main>
+  <div *ngIf="!criarAula" style="display: flex; justify-content: center;">
   <div *ngFor="let aula of aulas" style="padding: 2%; text-align: center;">
     <mat-card>
       <mat-card-content>
@@ -6,13 +7,42 @@
             {{aula.titulo}}<br>
             Duração: {{aula.duracao}}<br>
             Preço: {{aula.preco}}<br>
-            Avaliação: {{aula.instrutor.avaliacao}}
           </p>
       </mat-card-content>
       <mat-card-actions style="display: flex; justify-content: space-evenly;">
-        <button class="btn btn-md" style="background-color: white; color: #000; font-weight: 700;">Editar</button>
+        <button class="btn btn-md" style="background-color: white; color: #000; font-weight: 700;" (click)="exibirCriarAula()">Editar</button>
         <button class="btn btn-md" style="background-color: red; color: white;font-weight: 700;">Excluir</button>
       </mat-card-actions>
     </mat-card>
+  </div>
+ </div>
+  <div style="display: flex; justify-content: center;" id="div-criar-aula">
+    <button type="submit" id="btn-criar" style="width: 50%;" (click)="exibirCriarAula()" class="btn btn-tcm btn-lg btn-block mt-4">Criar Aula</button>
+  </div>
+  <div *ngIf="criarAula">
+    <form class="col-md-6 offset-md-3 mt-2" [formGroup]="aulaForm" (ngSubmit)="enviarDados()">
+      <h4>Criar/Editar Aula</h4>
+      <div class="form-group">
+        <label style="margin-top: 10px !important;" for="nome">Título </label>
+        <input class="form-control" id="nome" type="text" formControlName="titulo">
+        <label>Descrição </label>
+        <input class="form-control" type="text" formControlName="descricao">
+        <label>Duração </label>
+        <input class="form-control" type="text" formControlName="duracao" placeholder="Em minutos">
+        <label>Preço </label>
+        <input class="form-control" type="number" formControlName="preco" placeholder="Em reais">
+
+        <label>Ativar aula </label>
+        <input type="radio" name="status" id="radio1" class="css-checkbox" formControlName="status" value="online"/>
+        <label for="radio1" class="css-label radGroup1">Sim</label>
+        <input type="radio" name="status" id="radio2" class="css-checkbox" checked="checked" formControlName="status" value="offline" />
+        <label for="radio2" class="css-label radGroup1">Não</label>
+        
+        <div class="mt-4" style="display: flex; justify-content: space-between;">
+          <button class="btn btn-md" style="background-color: #3f51b5; color: white; font-weight: 700;" [disabled]="!aulaForm.valid">Salvar</button>
+          <button class="btn btn-md" style="background-color: red; color: white;font-weight: 700;" (click)="exibirAulas()">Cancelar</button>
+        </div>
+      </div>
+    </form>
   </div>
 </main>
