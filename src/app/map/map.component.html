@@ -20,21 +20,23 @@
       <strong>{{m.aula.titulo}}</strong><br>
       Duração: {{m.aula.duracao}}<br>
       Preço: R$ {{m.aula.preco}}<br>
-      <button (click)='openVerticallyCentered(content)'>Ver Instrutor</button>
-      <button>Ingressar</button>
+      <button (click)='openVerticallyCentered(ingressa)'>Ver Instrutor</button>
+      <button (click)='openVerticallyCentered(content)'>Ingressar</button>
     </agm-info-window>
 
     <ng-template #content let-c="close" let-d="dismiss">
       <div class="modal-header">
-        <h4 class="modal-title">Fernando Souza</h4>
+        <h4 class="modal-title">Pagamento Realizado!</h4>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <img src="/assets/img/boy.png" class="img-fluid">
+        <p>Instrutor: Fernando Souza</p>
         <p>Curso: Ciência da Computação</p>
         <p>Universidade: USJT</p>
+        <p>Sala: 102H</p>
+        
         <!-- <p>Avaliação:
         <ng-template #t let-fill="fill">
           <span class="star" [class.full]="fill === 100">
@@ -46,9 +48,36 @@
         </p> -->
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+          <a class="btn btn-dark" style="color: white;" routerLink="/timer" (click)="c('Close click')">Iniciar Aula</a>
+        <button type="button" class="btn btn-light" (click)="c('Close click')">Cancelar</button>
       </div>
     </ng-template>
+
+    <ng-template #ingressa let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title">Fernando Souza</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img src="/assets/img/boy.png" class="img-fluid">
+          <p>Curso: Ciência da Computação</p>
+          <p>Universidade: USJT</p>
+          <!-- <p>Avaliação:
+          <ng-template #t let-fill="fill">
+            <span class="star" [class.full]="fill === 100">
+              <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+            </span>
+          </ng-template>
+  
+          <ngb-rating [(rate)]="m.aula.instrutor.avaliacao" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+          </p> -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
+        </div>
+      </ng-template>
   </agm-marker>
 
 </agm-map>

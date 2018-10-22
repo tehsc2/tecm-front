@@ -30,6 +30,9 @@ import { HeaderService } from './components/header/header.service';
 import { PerfilComponent } from './perfil/perfil.component';
 import { AutenticacaoService } from './cadastro/autenticacao.service';
 import { RecomendacaoService } from './map/recomendacaoService.service';
+import { TimerComponent } from './timer/timer.component';
+import { CountdownTimerModule } from 'ngx-countdown-timer';
+import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 
 @NgModule({
   declarations: [
@@ -44,9 +47,12 @@ import { RecomendacaoService } from './map/recomendacaoService.service';
     SuporteComponent,
     EsqueciComponent,
     MapComponent,
-    PerfilComponent
+    PerfilComponent,
+    TimerComponent,
+    AvaliacaoComponent
   ],
   imports: [
+    CountdownTimerModule.forRoot(),
     HttpClientModule,
     FormsModule,
     BrowserModule,

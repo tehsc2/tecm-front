@@ -7,6 +7,8 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { EsqueciComponent } from './esqueci/esqueci.component';
 import { AulaComponent } from './aula/aula.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { TimerComponent } from './timer/timer.component';
+import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 
  const rotasApp: Routes = [
     {path: '', component: LoginComponent},
@@ -17,6 +19,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     {path: 'esqueci', component: EsqueciComponent},
     {path: 'aulas', component: AulaComponent},
     {path: 'perfil', component: PerfilComponent},
+    {path: 'timer', component: TimerComponent},
+    {path: 'avaliacao', component: AvaliacaoComponent},
     {path: '**', redirectTo: ''}
 ];
 

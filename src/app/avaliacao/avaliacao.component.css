@@ -1,0 +1,46 @@
+.btn-tcm {
+  color: #fff;
+  border-radius: 10px;
+  background-color: #3f51b5;
+  font-weight: 500;
+}
+
+form {
+  width: 600px;
+  margin: 200px auto;
+  padding: 30px;
+  border: 1px solid #545b62;
+}
+
+form p,
+form input[type="submit"] {
+  text-align: center;
+  font-size: 50px;
+}
+
+#wrapper form input[type="submit"] {
+  border: 1px solid #d9d9d9;
+  background-color: #efefef;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  color: grey;
+}
+
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+label:hover,
+label:hover ~ label {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+  color: orange;
+}

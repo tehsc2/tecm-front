@@ -8,7 +8,7 @@
       Você será redirecionado para o Mercado Pago, assim que efetuar o pagamento de um dos valores abaixo debitaremos a mesma quantia na sua conta! Bons estudos! :)
     </p>
     <div style="display: flex; justify-content: center;">
-    <button mp-mode="dftl" style="background-color: #3f51b5; color: #ffffff" class="btn mr-4" name="MP-payButton" (click)="pagar('https://www.mercadopago.com/mlb/checkout/start?pref_id=166987208-c9781467-4354-4552-9e4f-ccf5b066a156')">
+    <button mp-mode="dftl" style="background-color: #3f51b5; color: #ffffff" class="btn mr-4" name="MP-payButton" (click)="openVerticallyCentered(content)">
       R$ 20,00
     </button>
 
@@ -21,6 +21,21 @@
     </button>
   </div>
 </div>
+
+<ng-template #content let-c="close" let-d="dismiss" style="width: 100%;">
+    <div class="modal-header">
+      <h4 class="modal-title">Compre Créditos</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <embed src="https://www.mercadopago.com/mlb/checkout/start?pref_id=166987208-c9781467-4354-4552-9e4f-ccf5b066a156" width="100%">
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="c('Close click')">Voltar</button>
+    </div>
+  </ng-template>
 
 <script type="text/javascript">
   (function () { function $MPC_load() { window.$MPC_loaded !== true && (function () { var s = document.createElement("script"); s.type = "text/javascript"; s.async = true; s.src = document.location.protocol + "//secure.mlstatic.com/mptools/render.js"; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x); window.$MPC_loaded = true; })(); } window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null; })();
