@@ -5,9 +5,6 @@
       <div class="form-group">
         <label style="margin-top: 10px !important;" for="nome">Nome </label>
         <input class="form-control" id="nome" type="text" formControlName="nome">
-
-        <p style="color:red" *ngIf="!usuarioForm.controls.nome.valid && submitted">Required</p>
-
         <label>Sexo </label>
         <input type="radio" name="sexo" id="radio1" class="css-checkbox" formControlName="sexo" value="FEMININO"/>
         <label for="radio1" class="css-label radGroup1">Feminino</label>
