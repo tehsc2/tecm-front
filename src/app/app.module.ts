@@ -33,6 +33,7 @@ import { RecomendacaoService } from './map/recomendacaoService.service';
 import { TimerComponent } from './timer/timer.component';
 import { CountdownTimerModule } from 'ngx-countdown-timer';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
+import { AulaService } from './aula/aulaService.service';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
     AuthGuard,
     HeaderService,
     AutenticacaoService,
-    RecomendacaoService
+    RecomendacaoService,
+    AulaService
   ],
   bootstrap: [AppComponent]
 })

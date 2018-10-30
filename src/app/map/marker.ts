@@ -13,5 +13,5 @@ export class Marker implements MarkerInterface {
   lat = -23.5519104;
   lng = -46.5997832;
   draggable = false;
-  aula = new Aula(0, '', '', '', 0);
+  aula = new Aula(0, '', '', '', 0, '');
 }

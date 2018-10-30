@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Aula, AulaInterface } from './aula';
 import { FormBuilder, FormGroup } from '../../../node_modules/@angular/forms';
 import { AulaVO } from './aulaVO';
+import { AulaService } from './aulaService.service';
 
 @Component({
   selector: 'app-aula',
@@ -15,29 +16,25 @@ export class AulaComponent implements OnInit {
 
   aula: AulaVO;
   aulas: AulaInterface[];
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private aulaService: AulaService) {
     this.createForm();
-    // chama o endpoint
-    this.aulas = [
-      {
-        id: 0,
-        usuario_id: 1,
-        titulo: 'Scrum em 30 minutos!',
-        descricao: 'TI',
-        duracao: '30 m',
-        preco: 30.0
-      },
-      {
-      id: 0,
-      usuario_id: 1,
-      titulo: 'Linux em 60 minutos!',
-      descricao: 'TI',
-      duracao: '60 m',
-      preco: 25.0
-    }
-    ];
+    
+    this.recuperaAulas();
    }
 
+  salvarAula() {
+    console.log(this.aula);
+    this.aulaService.salvarAula(this.aula);
+    this.exibirAulas();
+  }
+
+  recuperaAulas() {
+    this.aulaService.recuperaAulas(1)
+      .subscribe( data => {
+        this.aulas = data;
+      });
+  }
+  
   ngOnInit() {
     this.criarAula = false;
   }
@@ -53,14 +50,39 @@ export class AulaComponent implements OnInit {
       titulo: [''],
       descricao: [''],
       duracao: [''],
-      preco: null,
-      status: ['']
+      preco: 0,
+      status: [''],
+      usuario_id: 1
     })
   }
 
-  exibirCriarAula(){
+  editarAula(id: number) {
+    this.aulaService.recuperarAulaById(id).subscribe(
+      data => {
+        this.aula = data;
+        console.log(this.aula)
+
+        this.updateAulaForm(this.aula);
+      });
+  }
+
+  updateAulaForm(aula: AulaVO) {
+    this.aulaForm = this.fb.group({
+      id: [aula.id],
+      titulo: [aula.titulo],
+      descricao: [aula.descricao],
+      duracao: [aula.duracao],
+      preco: [aula.preco],
+      status: [aula.status],
+      usuario_id: [aula.usuario_id]
+    })
+  }
+
+  exibirCriarAula(id: number){
     document.getElementById('btn-criar').hidden = true;
     this.criarAula = true;
+    console.log('ID:' + id);
+    this.editarAula(id);
   }
 
   exibirAulas(){

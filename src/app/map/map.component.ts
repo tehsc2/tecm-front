@@ -68,7 +68,8 @@ export class MapComponent implements OnInit {
             'Scrum em 30 minutos!',
             'TI',
             '30 m',
-            30.0
+            30.0,
+            'online'
           )
         },
         {
@@ -79,14 +80,15 @@ export class MapComponent implements OnInit {
             'Calculo I',
             'Engenharia Elétrica',
             '1 h',
-            35.0
+            35.0,
+            'online'
           )
         },
         {
           lat: -23.55196,
           lng: -46.5972715,
           draggable: false,
-          aula: new Aula(3, 'Excel Básico', 'TODOS', '1 h', 20.0)
+          aula: new Aula(3, 'Excel Básico', 'TODOS', '1 h', 20.0, 'online')
         }
       ];
 

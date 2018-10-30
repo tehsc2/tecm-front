@@ -6,6 +6,7 @@ export class AulaVO {
   descricao = '';
   duracao = '';
   preco = 0.0;
+  status = '';
 
   public constructor(init?: Partial<AulaVO>) {
     Object.assign(this, init);
