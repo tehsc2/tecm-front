@@ -17,6 +17,7 @@
   </div>
  </div>
   <div style="display: flex; justify-content: center;" id="div-criar-aula">
+    <button type="submit" id="btn-criar" style="width: 50%;" (click)="exibirCriarAula(aula.id)" class="btn btn-tcm btn-lg btn-block mt-4">Criar Aula</button>
   </div>
   <div *ngIf="criarAula">
     <form class="col-md-6 offset-md-3 mt-2" [formGroup]="aulaForm" (ngSubmit)="enviarDados()">
