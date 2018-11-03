@@ -3,6 +3,7 @@ import { Aula, AulaInterface } from './aula';
 import { FormBuilder, FormGroup } from '../../../node_modules/@angular/forms';
 import { AulaVO } from './aulaVO';
 import { AulaService } from './aulaService.service';
+import { Usuario } from '../cadastro/usuario';
 
 @Component({
   selector: 'app-aula',
@@ -11,32 +12,36 @@ import { AulaService } from './aulaService.service';
 })
 export class AulaComponent implements OnInit {
   aulaForm: FormGroup;
-
+  usuario: Usuario;
   criarAula: boolean;
 
   aula: AulaVO;
   aulas: AulaInterface[];
   constructor(private fb: FormBuilder, private aulaService: AulaService) {
-    this.createForm();
-    
-    this.recuperaAulas();
-   }
+  }
 
   salvarAula() {
+    this.enviarDados();
     console.log(this.aula);
     this.aulaService.salvarAula(this.aula);
     this.exibirAulas();
+    this.recuperaAulas();
   }
 
   recuperaAulas() {
-    this.aulaService.recuperaAulas(1)
+    this.aulaService.recuperaAulas(this.usuario.id)
       .subscribe( data => {
         this.aulas = data;
       });
   }
   
   ngOnInit() {
+    this.usuario = JSON.parse(localStorage.getItem('usuario'));
+    console.log('USUARIO: ' + this.usuario.id);
     this.criarAula = false;
+
+    this.recuperaAulas();
+    this.createForm();
   }
 
   enviarDados() {
@@ -52,7 +57,7 @@ export class AulaComponent implements OnInit {
       duracao: [''],
       preco: 0,
       status: [''],
-      usuario_id: 1
+      usuario_id: this.usuario.id
     })
   }
 

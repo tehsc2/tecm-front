@@ -1,16 +1,32 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { Aula } from '../aula/aula';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { MarkerInterface, Marker } from './marker';
+import { Usuario } from '../cadastro/usuario';
+import { Localizacao } from './localizacao';
 
 @Injectable()
-export class MapService {
+export class MapService implements OnInit{
 
-  private url = 'http://localhost:8081/aulas';
+  private url = 'http://localhost:8083/recomendacao/';
+  private urlLocalizacao = 'http://localhost:8086/localizacao';
+  user: Usuario;
 
-  constructor(private conexaoApi: HttpClient) {}
+  private options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
 
-  listarAulas(userId: number): Observable<Aula[]> {
-      return this.conexaoApi.get<Aula[]>(this.url.concat('/userId'));
+
+  constructor(private conexaoApi: HttpClient) {
+  }
+
+  ngOnInit(){
+  }
+
+  listarAulasRecomendadas(id: number) {
+      return this.conexaoApi.get<MarkerInterface[]>(this.url + id);
+  }
+
+  salvarLocalizacaoUsuario(localizacao): void{
+    console.log('LOCALIZACAO: ' + localizacao);
+    this.conexaoApi.post(this.urlLocalizacao + '/salvar', localizacao, this.options).subscribe();
   }
 }

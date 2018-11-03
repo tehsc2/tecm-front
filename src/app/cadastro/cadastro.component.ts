@@ -73,10 +73,11 @@ export class CadastroComponent {
 
   tryRegister(value) {
     console.log(value);
+    this.service.salvarUsuario(this.usuario);
+    this.appComponent.setLogged(true);
       this.authService.doRegister(value)
       .then(res => {
         this.appComponent.setLogged(true);
-        this.service.salvarUsuario(this.usuario);
         }, err => {
           alert(err);
         });

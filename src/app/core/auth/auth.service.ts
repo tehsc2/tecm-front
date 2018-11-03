@@ -4,13 +4,14 @@ import * as firebase from 'firebase/app';
 import { HeaderService } from '../../components/header/header.service';
 import { Usuario } from '../../cadastro/usuario';
 import { Router } from '../../../../node_modules/@angular/router';
+import { AutenticacaoService } from '../../cadastro/autenticacao.service';
 
 @Injectable()
 export class AuthService implements OnInit {
 
   usuario: Usuario;
 
-  constructor(public afAuth: AngularFireAuth, public header: HeaderService, private route: Router) { }
+  constructor(public afAuth: AngularFireAuth, public header: HeaderService, private route: Router, private autenticacaoService: AutenticacaoService) { }
 
   ngOnInit() {
     this.usuario = <Usuario> JSON.parse(localStorage.getItem('usuario'));
@@ -22,6 +23,13 @@ export class AuthService implements OnInit {
       this.afAuth.auth
       .signInWithPopup(provider)
       .then(res => {
+          this.autenticacaoService.recuperarUsuarioPorEmail(res.user.email).subscribe(
+            data => {
+              this.usuario = data;
+              localStorage.setItem('usuario', JSON.stringify(this.usuario));
+              console.log('USUARIO: ' + localStorage.getItem('usuario'));
+            }
+        )
         this.header.createHeader(res.user.displayName, res.user.photoURL, true);
         resolve(res);
       }, err => {
@@ -39,6 +47,13 @@ export class AuthService implements OnInit {
       this.afAuth.auth
       .signInWithPopup(provider)
       .then(res => {
+        this.autenticacaoService.recuperarUsuarioPorEmail(res.user.email).subscribe(
+          data => {
+            this.usuario = data;
+            localStorage.setItem('usuario', JSON.stringify(this.usuario));
+            console.log('USUARIO: ' + localStorage.getItem('usuario'));
+          }
+        )
         this.header.createHeader(res.user.displayName, res.user.photoURL, true);
         resolve(res);
       }, err => {
@@ -70,8 +85,8 @@ export class AuthService implements OnInit {
 
   doLogout() {
     localStorage.removeItem('usuario');
+    localStorage.removeItem('markers');
         this.afAuth.auth.signOut();
-        console.log('HEADER: ' + this.header);
         location.reload();
         this.route.navigate(['/']);
   }

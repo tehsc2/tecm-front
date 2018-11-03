@@ -9,7 +9,8 @@ import { MapComponent } from "../map/map.component";
 @Injectable()
 export class AutenticacaoService{
     ///ec2-13-59-220-29.us-east-2.compute.amazonaws.com
-    private url = 'http://ec2-13-59-220-29.us-east-2.compute.amazonaws.com:8080/usuario';
+    private url = 'http://localhost:8080/usuario';
+    usuario: Usuario;
 
     constructor(private http: HttpClient, private router: Router) {}
   
@@ -25,5 +26,12 @@ export class AutenticacaoService{
             error => {
                 alert("Error" + error);
             });
+    }
+
+    recuperarUsuarioPorEmail(email: string) {
+        let arroba = email.lastIndexOf('@');
+        email = email.substring(0, arroba);
+        console.log('Email: ' + email);
+        return this.http.get<Usuario>(this.url.concat('/email/' + email));
     }
 }

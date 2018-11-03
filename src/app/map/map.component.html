@@ -9,8 +9,8 @@
   <agm-marker class="markers"
       *ngFor="let m of usuario.markers; let i = index"
       (markerClick)="clickedMarker(infoWindow)"
-      [latitude]="m.lat"
-      [longitude]="m.lng"
+      [latitude]="m.latitude"
+      [longitude]="m.longitude"
       [markerDraggable]="m.draggable"
       (dragEnd)="markerDragEnd(m, $event)"
       [iconUrl]="'/assets/img/graduated.png'">
@@ -18,7 +18,7 @@
     <!-- Coloca como se fosse um ID no componente HTML -->
     <agm-info-window #infoWindow>
       <strong>{{m.aula.titulo}}</strong><br>
-      Duração: {{m.aula.duracao}}<br>
+      Duração: {{m.aula.duracao}} minutos<br>
       Preço: R$ {{m.aula.preco}}<br>
       <button (click)='openVerticallyCentered(ingressa)'>Ver Instrutor</button>
       <button (click)='openVerticallyCentered(content)'>Ingressar</button>

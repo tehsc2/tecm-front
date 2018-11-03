@@ -34,6 +34,7 @@ import { TimerComponent } from './timer/timer.component';
 import { CountdownTimerModule } from 'ngx-countdown-timer';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 import { AulaService } from './aula/aulaService.service';
+import { MapService } from './map/map.service';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { AulaService } from './aula/aulaService.service';
     HeaderService,
     AutenticacaoService,
     RecomendacaoService,
-    AulaService
+    AulaService,
+    MapService
   ],
   bootstrap: [AppComponent]
 })

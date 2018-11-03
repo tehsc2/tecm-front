@@ -4,6 +4,7 @@ import { AuthService } from '../core/auth/auth.service';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { UserService } from '../core/auth/user.service';
+import { AutenticacaoService } from '../cadastro/autenticacao.service';
 
 @Component({
   selector: 'app-login',
@@ -35,24 +36,30 @@ export class LoginComponent implements OnInit {
   tryFacebookLogin() {
     this.authService.doFacebookLogin()
     .then(res => {
-      this.router.navigate(['/home']);
-      this.appComponent.setLogged(true);
+      setTimeout(() => {
+        this.appComponent.setLogged(true);
+        this.router.navigate(['/home']);
+      }, 1000);
     });
   }
 
   tryGoogleLogin() {
     this.authService.doGoogleLogin()
     .then(res => {
-      this.router.navigate(['/home']);
-      this.appComponent.setLogged(true);
+      setTimeout(() => {
+        this.appComponent.setLogged(true);
+        this.router.navigate(['/home']);
+      }, 1000);
     });
   }
 
   tryLogin(value) {
     this.authService.doLogin(value)
     .then(res => {
-      this.router.navigate(['/home']);
-      this.appComponent.setLogged(true);
+      setTimeout(() => {
+        this.appComponent.setLogged(true);
+        this.router.navigate(['/home']);
+      }, 1000);
     }, err => {
       console.log(err);
     });

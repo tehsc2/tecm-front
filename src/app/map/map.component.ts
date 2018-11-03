@@ -7,6 +7,8 @@ import { Aula } from '../aula/aula';
 import { RecomendacaoService } from './recomendacaoService.service';
 import { Usuario } from '../cadastro/usuario';
 import { HeaderService } from '../components/header/header.service';
+import { MapService } from './map.service';
+import { Localizacao } from './localizacao';
 
 @Component({
   selector: 'app-map',
@@ -23,18 +25,22 @@ export class MapComponent implements OnInit {
 
   aulas: Aula[];
 
+  user: Usuario;
+
   location: any = {};
+
+  localizacao: Localizacao;
 
   usuario: UsuarioMarkerInterface;
 
   infoWindowOpened = null;
 
-  constructor(private modalService: NgbModal, private recomendacaoService: RecomendacaoService, private header: HeaderService) {
+  constructor(private modalService: NgbModal, private recomendacaoService: RecomendacaoService, private header: HeaderService, private mapService: MapService) {
 
   }
 
   ngOnInit() {
-    let usuarioResponse = <Usuario> JSON.parse(localStorage.getItem('usuario'));
+    this.user = JSON.parse(localStorage.getItem('usuario'));
 
     this.mapClicked();
     // userId = pega o usuario da sessao
@@ -51,49 +57,36 @@ export class MapComponent implements OnInit {
 
       this.usuario = new UsuarioMarkerInterface();
 
-      if(usuarioResponse == null){
-        this.usuario.userId = 1;
+      if(this.user == null){
+        this.user = JSON.parse(localStorage.getItem('usuario'));
+        console.log(this.user.id);
       }
       else{
-        this.usuario.userId = usuarioResponse.id;
+        this.usuario.userId = this.user.id;
       }
 
-      this.markers = [
-        {
-          lat: -23.5512998,
-          lng: -46.5974544,
-          // colocar um icone no lugar do label
-          draggable: false,
-          aula: new Aula(1,
-            'Scrum em 30 minutos!',
-            'TI',
-            '30 m',
-            30.0,
-            'online'
-          )
-        },
-        {
-          lat: -23.5519816,
-          lng: -46.5977289,
-          draggable: false,
-          aula: new Aula(2,
-            'Calculo I',
-            'Engenharia Elétrica',
-            '1 h',
-            35.0,
-            'online'
-          )
-        },
-        {
-          lat: -23.55196,
-          lng: -46.5972715,
-          draggable: false,
-          aula: new Aula(3, 'Excel Básico', 'TODOS', '1 h', 20.0, 'online')
-        }
-      ];
+      console.log('ID USUARIO: ' + this.usuario.userId);
+
+      this.markers = JSON.parse(localStorage.getItem('markers'));
+      console.log('MARKERS SESSAO: ' + this.markers);
+      if(this.markers == null){
+        this.mapService.listarAulasRecomendadas(this.usuario.userId).subscribe(
+          data => {
+            console.log(data);
+            this.markers = data;
+            localStorage.setItem('markers', JSON.stringify(this.markers));
+          }
+        );
+
+        setTimeout(() => {
+          console.log('MARKERS: ' + this.markers);
+  
+        this.usuario.markers = this.markers;
+        console.log(this.usuario);
+        }, 12000);
+      }
 
       this.usuario.markers = this.markers;
-      console.log(this.usuario);
   }
 
   openVerticallyCentered(content) {
@@ -125,6 +118,9 @@ export class MapComponent implements OnInit {
     console.log(position.coords);
      this.lat = position.coords.latitude;
      this.lng = position.coords.longitude;
+
+     this.localizacao = new Localizacao('' + this.lat, '' + this.lng, this.usuario.userId);
+     this.mapService.salvarLocalizacaoUsuario(JSON.stringify(this.localizacao));
  }
 
   markerDragEnd(m: MarkerInterface, $event: MouseEvent) {
