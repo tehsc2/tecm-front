@@ -31,7 +31,6 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { AutenticacaoService } from './cadastro/autenticacao.service';
 import { RecomendacaoService } from './map/recomendacaoService.service';
 import { TimerComponent } from './timer/timer.component';
-import { CountdownTimerModule } from 'ngx-countdown-timer';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 import { AulaService } from './aula/aulaService.service';
 import { MapService } from './map/map.service';
@@ -54,7 +53,6 @@ import { MapService } from './map/map.service';
     AvaliacaoComponent
   ],
   imports: [
-    CountdownTimerModule.forRoot(),
     HttpClientModule,
     FormsModule,
     BrowserModule,
