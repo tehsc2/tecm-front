@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Aula, AulaInterface } from './aula';
+import { AulaInterface } from './aula';
 import { FormBuilder, FormGroup } from '../../../node_modules/@angular/forms';
 import { AulaVO } from './aulaVO';
 import { AulaService } from './aulaService.service';
