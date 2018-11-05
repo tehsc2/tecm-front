@@ -9,6 +9,7 @@ import { Usuario } from '../cadastro/usuario';
 import { HeaderService } from '../components/header/header.service';
 import { MapService } from './map.service';
 import { Localizacao } from './localizacao';
+import { trimTrailingNulls } from '../../../node_modules/@angular/compiler/src/render3/view/util';
 
 @Component({
   selector: 'app-map',
@@ -93,6 +94,15 @@ export class MapComponent implements OnInit {
     this.modalService.open(content, { centered: true });
   }
 
+  ingressaAula(titulo: string){
+    const result = this.markers.filter(
+      mark => mark.aula.titulo === titulo);
+
+    localStorage.setItem('aulaSelecionada', JSON.stringify(result));
+
+    console.log('AULA SELECIONADA: ' + result);
+  }
+
   // Fecha a info window se for abrir outra
   clickedMarker(infoWindow: AgmInfoWindow) {
     if (this.infoWindowOpened === infoWindow) {
@@ -107,6 +117,9 @@ export class MapComponent implements OnInit {
   // Atualizar a lista de aulas?
   mapClicked() {
     console.log('FORA DO MAPA');
+    if(this.user !== undefined){
+      this.getRecomendacoes();
+    }
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((pos) => this.setPosition(pos));
     } else {
@@ -125,5 +138,22 @@ export class MapComponent implements OnInit {
 
   markerDragEnd(m: MarkerInterface, $event: MouseEvent) {
     console.log('dragEnd', m, $event);
+  }
+
+  getRecomendacoes(){
+    this.mapService.listarAulasRecomendadas(this.user.id).subscribe(
+          data => {
+            console.log(data);
+            this.markers = data;
+            localStorage.setItem('markers', JSON.stringify(this.markers));
+          }
+        );
+
+        setTimeout(() => {
+          console.log('MARKERS: ' + this.markers);
+  
+        this.usuario.markers = this.markers;
+        console.log(this.usuario);
+        }, 12000);
   }
 }

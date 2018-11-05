@@ -29,10 +29,13 @@ export class AulaComponent implements OnInit {
   }
 
   recuperaAulas() {
-    this.aulaService.recuperaAulas(this.usuario.id)
+      setTimeout(() => {
+        this.aulaService.recuperaAulas(this.usuario.id)
       .subscribe( data => {
         this.aulas = data;
+        console.log('MINHAS AULAS: ' + this.aulas);
       });
+      }, 2000);
   }
   
   ngOnInit() {
@@ -40,8 +43,8 @@ export class AulaComponent implements OnInit {
     console.log('USUARIO: ' + this.usuario.id);
     this.criarAula = false;
 
-    this.recuperaAulas();
     this.createForm();
+    this.recuperaAulas();
   }
 
   enviarDados() {
@@ -83,11 +86,9 @@ export class AulaComponent implements OnInit {
     })
   }
 
-  exibirCriarAula(id: number){
+  exibirCriarAula(){
     document.getElementById('btn-criar').hidden = true;
     this.criarAula = true;
-    console.log('ID:' + id);
-    this.editarAula(id);
   }
 
   exibirAulas(){

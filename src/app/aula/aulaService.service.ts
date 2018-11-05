@@ -32,4 +32,8 @@ export class AulaService{
     recuperarAulaById(id: number) {
         return this.http.get<Aula>(this.url.concat('/' + id));
     }
+
+    recuperaAulasDaArea(userId: number, area: string, busca: string){
+        return this.http.get<Aula[]>(this.url + '/' + userId + '/area/' + area + '/' + busca);
+    }
 }

@@ -21,7 +21,7 @@
       Duração: {{m.aula.duracao}} minutos<br>
       Preço: R$ {{m.aula.preco}}<br>
       <button (click)='openVerticallyCentered(ingressa)'>Ver Instrutor</button>
-      <button (click)='openVerticallyCentered(content)'>Ingressar</button>
+      <button (click)='ingressaAula(m.aula.titulo)'>Ingressar</button>
     </agm-info-window>
 
     <ng-template #content let-c="close" let-d="dismiss">
@@ -79,7 +79,6 @@
         </div>
       </ng-template>
   </agm-marker>
-
 </agm-map>
 <script>
 function getLocation() {

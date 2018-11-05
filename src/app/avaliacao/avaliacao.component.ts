@@ -1,20 +1,67 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '../../../node_modules/@angular/router';
+import { Avaliacao } from './avaliacao';
+import { AvaliacaoService } from './avaliacaoService';
+import { Aula } from '../aula/aula';
+import { Usuario } from '../cadastro/usuario';
+import { Marker, MarkerInterface } from '../map/marker';
 
 @Component({
   selector: 'app-avaliacao',
   templateUrl: './avaliacao.component.html',
-  styleUrls: ['./avaliacao.component.css']
+  styles: [`
+  .star {
+    position: relative;
+    display: inline-block;
+    font-size: 3rem;
+    color: #d3d3d3;
+  }
+  .full {
+    color: red;
+  }
+  .half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: red;
+  }
+  .btn-tcm {
+    color: #fff;
+    border-radius: 10px;
+    background-color: #3f51b5;
+    font-weight: 500;
+  }
+`]
 })
 export class AvaliacaoComponent implements OnInit {
+  currentRate = 0;
+  avaliacao: Avaliacao;
+  aula: Aula;
+  usuario: Usuario;
+  markers: MarkerInterface[];
 
-  constructor(private route: Router) { }
+  constructor(private avaliacaoService: AvaliacaoService) { }
 
   ngOnInit() {
+    this.usuario = JSON.parse(localStorage.getItem('usuario'));
+    this.aula = JSON.parse(localStorage.getItem('aulaSelecionada'));
   }
 
   avaliarAula(){
-    this.route.navigate(['/home']);
+    this.avaliacao = new Avaliacao();
+    this.avaliacao.aula_id = 32;
+    this.avaliacao.usuario_id = this.usuario.id;
+    this.avaliacao.nota = this.currentRate;
+
+    console.log(this.avaliacao);
+    this.avaliacaoService.salvarAvaliacao(this.avaliacao);
+    localStorage.removeItem('aulaSelecionada');
+    this.markers = JSON.parse(localStorage.getItem('markers'));
+
+    this.markers = this.markers.filter(
+      mark => mark.aula.id !== this.avaliacao.aula_id);
+
+    localStorage.setItem('markers', JSON.stringify(this.markers));
   }
 
 }

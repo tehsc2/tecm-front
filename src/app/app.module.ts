@@ -34,6 +34,8 @@ import { TimerComponent } from './timer/timer.component';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 import { AulaService } from './aula/aulaService.service';
 import { MapService } from './map/map.service';
+import { AvaliacaoService } from './avaliacao/avaliacaoService';
+import { ListaAulasComponent } from './lista-aulas/lista-aulas.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import { MapService } from './map/map.service';
     MapComponent,
     PerfilComponent,
     TimerComponent,
-    AvaliacaoComponent
+    AvaliacaoComponent,
+    ListaAulasComponent
   ],
   imports: [
     HttpClientModule,
@@ -82,7 +85,8 @@ import { MapService } from './map/map.service';
     AutenticacaoService,
     RecomendacaoService,
     AulaService,
-    MapService
+    MapService,
+    AvaliacaoService
   ],
   bootstrap: [AppComponent]
 })

@@ -77,6 +77,13 @@ export class AuthService implements OnInit {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(value.email, value.password)
       .then(res => {
+        this.autenticacaoService.recuperarUsuarioPorEmail(res.user.email).subscribe(
+          data => {
+            this.usuario = data;
+            localStorage.setItem('usuario', JSON.stringify(this.usuario));
+            console.log('USUARIO: ' + localStorage.getItem('usuario'));
+          }
+        )
         this.header.createHeader(value.email, '', true);
         resolve(res);
       }, err => alert(err));

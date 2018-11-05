@@ -9,6 +9,7 @@ import { AulaComponent } from './aula/aula.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { TimerComponent } from './timer/timer.component';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
+import { ListaAulasComponent } from './lista-aulas/lista-aulas.component';
 
  const rotasApp: Routes = [
     {path: '', component: LoginComponent},
@@ -21,6 +22,7 @@ import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
     {path: 'perfil', component: PerfilComponent},
     {path: 'timer', component: TimerComponent},
     {path: 'avaliacao', component: AvaliacaoComponent},
+    {path: 'lista-aulas', component: ListaAulasComponent},
     {path: '**', redirectTo: ''}
 ];
 

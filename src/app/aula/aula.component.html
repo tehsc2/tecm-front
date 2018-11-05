@@ -10,14 +10,14 @@
           </p>
       </mat-card-content>
       <mat-card-actions style="display: flex; justify-content: space-evenly;">
-        <button class="btn btn-md" style="background-color: white; color: #000; font-weight: 700;" (click)="exibirCriarAula(aula.id)">Editar</button>
+        <button class="btn btn-md" style="background-color: white; color: #000; font-weight: 700;" (click)="editarAula(aula.id)">Editar</button>
         <button class="btn btn-md" style="background-color: red; color: white;font-weight: 700;">Excluir</button>
       </mat-card-actions>
     </mat-card>
   </div>
  </div>
   <div style="display: flex; justify-content: center;" id="div-criar-aula">
-    <button type="submit" id="btn-criar" style="width: 50%;" (click)="exibirCriarAula(aula.id)" class="btn btn-tcm btn-lg btn-block mt-4">Criar Aula</button>
+    <button type="submit" id="btn-criar" style="width: 50%;" (click)="exibirCriarAula()" class="btn btn-tcm btn-lg btn-block mt-4">Criar Aula</button>
   </div>
   <div *ngIf="criarAula">
     <form class="col-md-6 offset-md-3 mt-2" [formGroup]="aulaForm" (ngSubmit)="enviarDados()">

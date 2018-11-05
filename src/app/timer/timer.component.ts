@@ -11,6 +11,7 @@ export class TimerComponent implements OnInit {
   constructor(private route: Router) { }
 
   ngOnInit() {
+    
   }
 
   avaliarAula(){
