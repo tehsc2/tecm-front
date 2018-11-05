@@ -1,5 +1,5 @@
-<div style="text-align: right; padding: 1%; font-weight: bold;">
-    Saldo Atual: R$ 50,00
+<div style="text-align: right; padding: 1%; font-weight: bold;" (saldo)="saldo">
+    Saldo Atual: R$ {{saldo}}
 </div>
 <hr>
 <div style="text-align: center;" id="div-pagamento">
@@ -8,22 +8,18 @@
       Você será redirecionado para o Mercado Pago, assim que efetuar o pagamento de um dos valores abaixo debitaremos a mesma quantia na sua conta! Bons estudos! :)
     </p>
     <div style="display: flex; justify-content: center;">
-    <button mp-mode="dftl" style="background-color: #3f51b5; color: #ffffff" class="btn mr-4" name="MP-payButton" (click)="showPagamento()">
+    <button mp-mode="dftl" style="background-color: #3f51b5; color: #ffffff" class="btn mr-4" name="MP-payButton" (click)="pagar20()">
       R$ 20,00
     </button>
 
-    <button mp-mode="dftl" style="background-color: #3f51b5; color: #ffffff" class="btn mr-4" name="MP-payButton" (click)="pagar('https://www.mercadopago.com/mlb/checkout/start?pref_id=166987208-7502c05c-a0d1-4a2a-9fdf-23b0bf020e68')">
+    <button mp-mode="dftl" style="background-color: #3f51b5; color: #ffffff" class="btn mr-4" name="MP-payButton" (click)="pagar50('https://www.mercadopago.com/mlb/checkout/start?pref_id=374927177-d858c367-311d-4d9c-aa20-84e7d63222e7')">
       R$ 50,00
     </button>
 
-    <button mp-mode="dftl" style="background-color: #3f51b5; color: #ffffff" class="btn" name="MP-payButton" (click)="pagar('https://www.mercadopago.com/mlb/checkout/start?pref_id=166987208-16fbe4f1-68f4-476c-85ab-8dd6397d6846')">
+    <button mp-mode="dftl" style="background-color: #3f51b5; color: #ffffff" class="btn" name="MP-payButton" (click)="pagar100()">
       R$ 100,00
     </button>
   </div>
-</div>
-<div class="mt-4" style="display: flex; height: 500px; justify-content: center;" id="pagamento-view" >
-  <embed src="https://www.mercadopago.com/mlb/checkout/start?pref_id=166987208-c9781467-4354-4552-9e4f-ccf5b066a156" width="50%">
-  <button type="button" class="btn btn-light" (click)="voltar()">Voltar</button>
 </div>
 
 <script type="text/javascript">
