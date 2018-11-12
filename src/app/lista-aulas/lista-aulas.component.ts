@@ -3,6 +3,7 @@ import { AulaInterface } from '../aula/aula';
 import { AulaService } from '../aula/aulaService.service';
 import { Usuario } from '../cadastro/usuario';
 import { FormBuilder, FormGroup } from '../../../node_modules/@angular/forms';
+import { MarkerInterface } from '../map/marker';
 
 @Component({
   selector: 'app-lista-aulas',
@@ -19,6 +20,19 @@ export class ListaAulasComponent implements OnInit {
     console.log('USUARIO: ' + this.usuario.id);
     let busca = 'none';
     this.recuperaAulasDaArea(busca);
+  }
+
+  ingressarAula(idAula: number){
+    console.log('ID AULA: ' + idAula);
+
+    this.aulas.forEach(
+      data => {
+        if(data.id === idAula){
+          localStorage.removeItem('aulaSelecionada');
+          localStorage.setItem('outraAulaSelecionada', JSON.stringify(data));
+        }
+      }
+    );
   }
 
   recuperaAulasDaArea(busca: string) {

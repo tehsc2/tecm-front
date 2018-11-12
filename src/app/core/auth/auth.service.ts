@@ -91,8 +91,7 @@ export class AuthService implements OnInit {
   }
 
   doLogout() {
-    localStorage.removeItem('usuario');
-    localStorage.removeItem('markers');
+        localStorage.clear();
         this.afAuth.auth.signOut();
         location.reload();
         this.route.navigate(['/']);

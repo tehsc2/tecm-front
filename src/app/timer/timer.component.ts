@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '../../../node_modules/@angular/router';
+import { Aula } from '../aula/aula';
+import { MarkerInterface, Marker } from '../map/marker';
 
 @Component({
   selector: 'app-timer',
@@ -8,13 +10,28 @@ import { Router } from '../../../node_modules/@angular/router';
 })
 export class TimerComponent implements OnInit {
 
+  @Input() aula: Aula;
+
+  @Input() marker: MarkerInterface = new Marker();
+
   constructor(private route: Router) { }
 
   ngOnInit() {
-    
+    this.marker = JSON.parse(localStorage.getItem('aulaSelecionada'));
+    console.log('MARKER: ' + this.marker);
+
+    if(this.marker === null){
+      this.aula = JSON.parse(localStorage.getItem('outraAulaSelecionada'));
+      console.log('AULA: ' + this.aula.titulo);
+      //falta buscar a localizacao do instrutor
+      //this.marker.latitude=
+    } else{
+      this.aula = this.marker.aula;
+    }    
   }
 
   avaliarAula(){
+    localStorage.setItem('idAulaSelecionada', JSON.stringify(this.aula.id));
     this.route.navigate(['/avaliacao']);
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MouseEvent, AgmInfoWindow } from '@agm/core';
 import { MarkerInterface, Marker } from './marker';
 import { UsuarioMarkerInterface, UsuarioMarker } from './usuarioMarker';
@@ -9,7 +9,9 @@ import { Usuario } from '../cadastro/usuario';
 import { HeaderService } from '../components/header/header.service';
 import { MapService } from './map.service';
 import { Localizacao } from './localizacao';
-import { trimTrailingNulls } from '../../../node_modules/@angular/compiler/src/render3/view/util';
+import { UserServiceUser } from './user.service';
+import { routerNgProbeToken } from '../../../node_modules/@angular/router/src/router_module';
+import { Router } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-map',
@@ -26,7 +28,11 @@ export class MapComponent implements OnInit {
 
   aulas: Aula[];
 
+  saldo: number;
+
   user: Usuario;
+
+  @Input() instrutor: Usuario = new Usuario();
 
   location: any = {};
 
@@ -36,7 +42,7 @@ export class MapComponent implements OnInit {
 
   infoWindowOpened = null;
 
-  constructor(private modalService: NgbModal, private recomendacaoService: RecomendacaoService, private header: HeaderService, private mapService: MapService) {
+  constructor(private modalService: NgbModal, private recomendacaoService: RecomendacaoService, private header: HeaderService, private mapService: MapService, private userService: UserServiceUser, private route: Router) {
 
   }
 
@@ -90,17 +96,34 @@ export class MapComponent implements OnInit {
       this.usuario.markers = this.markers;
   }
 
-  openVerticallyCentered(content) {
-    this.modalService.open(content, { centered: true });
+  openVerticallyCentered(content, idInstrutor: number) {
+    console.log('ID INSTRUTOR: ' + idInstrutor);
+
+    this.userService.getInstrutor(idInstrutor).subscribe(
+      data => {
+          this.instrutor = data;
+      }
+    );
+
+    setTimeout(() => {
+      this.modalService.open(content, { centered: true });
+    }, 2000);
   }
 
-  ingressaAula(titulo: string){
-    const result = this.markers.filter(
-      mark => mark.aula.titulo === titulo);
+  ingressaAula(marker: MarkerInterface){
+    this.saldo = JSON.parse(localStorage.getItem('saldo'));
 
-    localStorage.setItem('aulaSelecionada', JSON.stringify(result));
-
-    console.log('AULA SELECIONADA: ' + result);
+    if(this.saldo === 0.0 || marker.aula.preco > this.saldo){
+      alert("Você não possui saldo suficiente");
+      this.route.navigate(['/pagamento']);
+    }else{
+      localStorage.setItem('aulaSelecionada', JSON.stringify(marker));
+      this.saldo = this.saldo - marker.aula.preco;
+      localStorage.setItem('saldo', JSON.stringify(this.saldo));
+      console.log('SALDO ATUAL: ' +  this.saldo);
+      console.log('AULA SELECIONADA: ' + marker.aula.titulo);
+      this.route.navigate(['/timer']);
+    }
   }
 
   // Fecha a info window se for abrir outra
@@ -154,6 +177,6 @@ export class MapComponent implements OnInit {
   
         this.usuario.markers = this.markers;
         console.log(this.usuario);
-        }, 12000);
+        }, 15000);
   }
 }

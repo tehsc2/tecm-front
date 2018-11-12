@@ -36,7 +36,7 @@ import { Marker, MarkerInterface } from '../map/marker';
 export class AvaliacaoComponent implements OnInit {
   currentRate = 0;
   avaliacao: Avaliacao;
-  aula: Aula;
+  idAula: number;
   usuario: Usuario;
   markers: MarkerInterface[];
 
@@ -44,16 +44,17 @@ export class AvaliacaoComponent implements OnInit {
 
   ngOnInit() {
     this.usuario = JSON.parse(localStorage.getItem('usuario'));
-    this.aula = JSON.parse(localStorage.getItem('aulaSelecionada'));
+    this.idAula = JSON.parse(localStorage.getItem('idAulaSelecionada'));
+    console.log('ID AULA: ' + this.idAula);
   }
 
   avaliarAula(){
     this.avaliacao = new Avaliacao();
-    this.avaliacao.aula_id = 32;
+    this.avaliacao.aula_id = this.idAula;
     this.avaliacao.usuario_id = this.usuario.id;
     this.avaliacao.nota = this.currentRate;
 
-    console.log(this.avaliacao);
+    console.log('AVALIACAO: ' + this.avaliacao);
     this.avaliacaoService.salvarAvaliacao(this.avaliacao);
     localStorage.removeItem('aulaSelecionada');
     this.markers = JSON.parse(localStorage.getItem('markers'));

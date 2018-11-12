@@ -14,4 +14,9 @@ export class Marker implements MarkerInterface {
   longitude = -46.5997832;
   draggable = false;
   aula = new Aula(0, '', '', '', 0, '');
+
+  constructor(){
+    this.latitude = 0;
+    this.longitude = 0;
+  }
 }

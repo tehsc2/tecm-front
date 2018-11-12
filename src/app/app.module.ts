@@ -11,6 +11,7 @@ import { CommonModule } from '../../node_modules/@angular/common';
 import { PagamentoComponent } from './pagamento/pagamento.component';
 import { CarrinhoComponent } from './carrinho/carrinho.component';
 import {MatCardModule} from '@angular/material/card';
+import { UserService } from './core/auth/user.service';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { ConfiguracoesComponent } from './configuracoes/configuracoes.component';
 import { SuporteComponent } from './suporte/suporte.component';
@@ -20,7 +21,6 @@ import { environment } from '../environments/environment';
 import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore';
 import { AuthService } from './core/auth/auth.service';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
-import { UserService } from './core/auth/user.service';
 import { AuthGuard } from './core/auth/auth.guard';
 import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core';
@@ -36,6 +36,7 @@ import { AulaService } from './aula/aulaService.service';
 import { MapService } from './map/map.service';
 import { AvaliacaoService } from './avaliacao/avaliacaoService';
 import { ListaAulasComponent } from './lista-aulas/lista-aulas.component';
+import { UserServiceUser } from './map/user.service';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { ListaAulasComponent } from './lista-aulas/lista-aulas.component';
     RecomendacaoService,
     AulaService,
     MapService,
-    AvaliacaoService
+    AvaliacaoService,
+    UserServiceUser
   ],
   bootstrap: [AppComponent]
 })

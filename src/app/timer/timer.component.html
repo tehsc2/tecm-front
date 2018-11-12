@@ -1,3 +1,10 @@
 <div style="display: flex; justify-content: center; margin-top: 200px">
-    <button class="btn btn-dark" style="color: white; font-weight: 700;" (click)="avaliarAula()">Finalizar</button>
+
+    <p>Título: {{aula.titulo}}<br>
+        Duração: {{aula.duracao}} minutos<br>
+        Preço: R${{aula.preco}}<br>
+        Localizacao: <a href="https://www.google.com.br/maps/place/{{marker.latitude}},{{marker.longitude}}">Google maps</a>
+    </p>
+
+    <button class="btn btn-dark ml-4" style="color: white; font-weight: 300;" (click)="avaliarAula()">Finalizar</button>
 </div>

@@ -1,5 +1,6 @@
-<div style="text-align: right; padding: 1%; font-weight: bold;" (saldo)="saldo">
-    Saldo Atual: R$ {{saldo}}
+<div style="display: flex; justify-content: space-between; padding: 1%; font-weight: bold;" (saldo)="saldo">
+ <button style="background-color: #3f51b5; color: #ffffff" class="btn" (click)="resgatar(resgate, saldo)">Resgatar Créditos</button> 
+ <label>Saldo Atual: R$ {{saldo}}</label>
 </div>
 <hr>
 <div style="text-align: center;" id="div-pagamento">
@@ -25,3 +26,44 @@
 <script type="text/javascript">
   (function () { function $MPC_load() { window.$MPC_loaded !== true && (function () { var s = document.createElement("script"); s.type = "text/javascript"; s.async = true; s.src = document.location.protocol + "//secure.mlstatic.com/mptools/render.js"; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x); window.$MPC_loaded = true; })(); } window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null; })();
 </script>
+
+<ng-template #resgate let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Resgate seus créditos!</h4>
+      <button type="button" class="close" aria-label="Fechar" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="text-align: center;">
+      <!-- <img src="/assets/img/.png" class="img-fluid"> -->
+      <div id="messageResgate">
+      <p>Para resgatar é muito simples, será cobrada uma taxa de R$3,00, mas fique tranquilo, seu dinheiro cai na hora!</p>
+      <p>Saldo Atual: R$ {{saldo}}</p>
+      <p>Preencha os campos abaixo:</p>
+      <form class="col-md-6 offset-md-3 mt-2" [formGroup]="resgateForm" (ngSubmit)="enviarDados()">
+          <div class="form-group">
+            <label style="margin-top: 10px !important;" for="nome">Agência </label>
+            <input class="form-control" id="nome" type="text" formControlName="agencia">
+            <label>Conta </label>
+            <input class="form-control" type="text" formControlName="conta">
+            <label>CPF </label>
+            <input class="form-control" type="text" formControlName="cpf">
+            <label>Valor Resgatado </label>
+            <input class="form-control" type="number" formControlName="saldo">
+            
+            <div class="mt-4" style="display: flex; justify-content: center;">
+              <button class="btn btn-md" style="background-color: #3f51b5; color: white; font-weight: 700;" [disabled]="!resgateForm.valid" (click)="resgatarSaldo()">Resgatar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div id="messageOk">
+        <p>Resgate realizado com sucesso!</p>
+        <p>Saldo atual: R${{saldo}}</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="c('Close click')">Fechar</button>
+    </div>
+  </ng-template>
