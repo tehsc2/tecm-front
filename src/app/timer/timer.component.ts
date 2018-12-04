@@ -14,6 +14,9 @@ export class TimerComponent implements OnInit {
 
   @Input() marker: MarkerInterface = new Marker();
 
+  latitude: number;
+  longitude: number;
+
   constructor(private route: Router) { }
 
   ngOnInit() {
@@ -24,7 +27,8 @@ export class TimerComponent implements OnInit {
       this.aula = JSON.parse(localStorage.getItem('outraAulaSelecionada'));
       console.log('AULA: ' + this.aula.titulo);
       //falta buscar a localizacao do instrutor
-      //this.marker.latitude=
+      this.latitude = -23.5506212;
+      this.longitude = -46.6062864;
     } else{
       this.aula = this.marker.aula;
     }    

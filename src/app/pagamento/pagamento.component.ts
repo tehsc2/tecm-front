@@ -27,6 +27,7 @@ export class PagamentoComponent implements OnInit {
   }
 
   enviarDados() {
+    this.saldo = JSON.parse(localStorage.getItem('saldo'));
     console.log(this.resgateForm.value);
   }
 
@@ -42,11 +43,13 @@ export class PagamentoComponent implements OnInit {
   pagar20(){
     this.saldo = this.saldo + 20.00;
     localStorage.setItem('saldo', JSON.stringify(this.saldo));
+    this.createForm();
   }
 
   pagar100(){
     this.saldo = this.saldo + 100.00;
     localStorage.setItem('saldo', JSON.stringify(this.saldo));
+    this.createForm();
   }
 
   pagar50(link: string) {
@@ -57,6 +60,7 @@ export class PagamentoComponent implements OnInit {
 
     this.saldo = this.saldo + 50.00;
     localStorage.setItem('saldo', JSON.stringify(this.saldo));
+    this.createForm();
   }
 
   showPagamento(){
