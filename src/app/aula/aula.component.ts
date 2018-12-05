@@ -20,6 +20,11 @@ export class AulaComponent implements OnInit {
   constructor(private fb: FormBuilder, private aulaService: AulaService) {
   }
 
+  excluirAula(id: number) {
+    this.aulaService.excluirAula(id);
+    this.recuperaAulas();
+  }
+
   salvarAula() {
     this.enviarDados();
     console.log(this.aula);
@@ -37,7 +42,7 @@ export class AulaComponent implements OnInit {
       });
       }, 2000);
   }
-  
+
   ngOnInit() {
     this.usuario = JSON.parse(localStorage.getItem('usuario'));
     console.log('USUARIO: ' + this.usuario.id);
@@ -61,7 +66,7 @@ export class AulaComponent implements OnInit {
       preco: 0,
       status: [''],
       usuario_id: this.usuario.id
-    })
+    });
   }
 
   editarAula(id: number) {
@@ -83,15 +88,15 @@ export class AulaComponent implements OnInit {
       preco: [aula.preco],
       status: [aula.status],
       usuario_id: [aula.usuario_id]
-    })
+    });
   }
 
-  exibirCriarAula(){
+  exibirCriarAula() {
     document.getElementById('btn-criar').hidden = true;
     this.criarAula = true;
   }
 
-  exibirAulas(){
+  exibirAulas() {
     document.getElementById('btn-criar').hidden = false;
     this.criarAula = false;
   }

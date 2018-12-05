@@ -11,7 +11,7 @@
       </mat-card-content>
       <mat-card-actions style="display: flex; justify-content: space-evenly;">
         <button class="btn btn-md" style="background-color: white; color: #000; font-weight: 700;" (click)="editarAula(aula.id)">Editar</button>
-        <button class="btn btn-md" style="background-color: red; color: white;font-weight: 700;">Excluir</button>
+        <button class="btn btn-md" style="background-color: red; color: white;font-weight: 700;" (click)="excluirAula(aula.id)">Excluir</button>
       </mat-card-actions>
     </mat-card>
   </div>
@@ -37,7 +37,7 @@
         <label for="radio1" class="css-label radGroup1">Sim</label>
         <input type="radio" name="status" id="radio2" class="css-checkbox" checked="checked" formControlName="status" value="offline" />
         <label for="radio2" class="css-label radGroup1">Não</label>
-        
+
         <div class="mt-4" style="display: flex; justify-content: space-between;">
           <button class="btn btn-md" style="background-color: #3f51b5; color: white; font-weight: 700;" [disabled]="!aulaForm.valid" (click)="salvarAula()">Salvar</button>
           <button class="btn btn-md" style="background-color: red; color: white;font-weight: 700;" (click)="exibirAulas()">Cancelar</button>
