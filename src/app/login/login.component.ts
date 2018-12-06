@@ -14,6 +14,7 @@ import { AutenticacaoService } from '../cadastro/autenticacao.service';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  block: string;
 
   constructor(public authService: AuthService,
     private router: Router,
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   createForm() {
@@ -38,7 +40,12 @@ export class LoginComponent implements OnInit {
     .then(res => {
       setTimeout(() => {
         this.appComponent.setLogged(true);
-        this.router.navigate(['/home']);
+        this.block = localStorage.getItem('block');
+        if(this.block === 'true'){
+          this.router.navigate(['/timer']);
+        } else{
+          this.router.navigate(['/home']);
+        }
       }, 1000);
     });
   }
@@ -48,7 +55,12 @@ export class LoginComponent implements OnInit {
     .then(res => {
       setTimeout(() => {
         this.appComponent.setLogged(true);
-        this.router.navigate(['/home']);
+        this.block = localStorage.getItem('block');
+        if(this.block === 'true'){
+          this.router.navigate(['/timer']);
+        } else{
+          this.router.navigate(['/home']);
+        }
       }, 1000);
     });
   }
@@ -58,7 +70,12 @@ export class LoginComponent implements OnInit {
     .then(res => {
       setTimeout(() => {
         this.appComponent.setLogged(true);
-        this.router.navigate(['/home']);
+        this.block = localStorage.getItem('block');
+        if(this.block === 'true'){
+          this.router.navigate(['/timer']);
+        } else{
+          this.router.navigate(['/home']);
+        }
       }, 1000);
     }, err => {
       console.log(err);

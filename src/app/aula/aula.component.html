@@ -32,12 +32,6 @@
         <label>Preço </label>
         <input class="form-control" type="number" formControlName="preco" placeholder="Em reais">
 
-        <label>Ativar aula </label>
-        <input type="radio" name="status" id="radio1" class="css-checkbox" formControlName="status" value="online"/>
-        <label for="radio1" class="css-label radGroup1">Sim</label>
-        <input type="radio" name="status" id="radio2" class="css-checkbox" checked="checked" formControlName="status" value="offline" />
-        <label for="radio2" class="css-label radGroup1">Não</label>
-
         <div class="mt-4" style="display: flex; justify-content: space-between;">
           <button class="btn btn-md" style="background-color: #3f51b5; color: white; font-weight: 700;" [disabled]="!aulaForm.valid" (click)="salvarAula()">Salvar</button>
           <button class="btn btn-md" style="background-color: red; color: white;font-weight: 700;" (click)="exibirAulas()">Cancelar</button>

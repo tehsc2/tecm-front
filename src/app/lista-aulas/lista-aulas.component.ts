@@ -4,6 +4,7 @@ import { AulaService } from '../aula/aulaService.service';
 import { Usuario } from '../cadastro/usuario';
 import { FormBuilder, FormGroup } from '../../../node_modules/@angular/forms';
 import { MarkerInterface } from '../map/marker';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-aulas',
@@ -13,40 +14,51 @@ import { MarkerInterface } from '../map/marker';
 export class ListaAulasComponent implements OnInit {
   usuario: Usuario;
   aulas: AulaInterface[];
-  constructor(private aulaService: AulaService, private fb: FormBuilder) { }
+  aula: AulaInterface;
+  constructor(private aulaService: AulaService, private fb: FormBuilder, private route: Router) { }
 
   ngOnInit() {
     this.usuario = JSON.parse(localStorage.getItem('usuario'));
     console.log('USUARIO: ' + this.usuario.id);
     let busca = 'none';
     this.recuperaAulasDaArea(busca);
+    localStorage.removeItem('outraAulaSelecionada');
+    localStorage.removeItem('idAulaSelecionada');
   }
 
-  ingressarAula(idAula: number){
+  ingressarAula(idAula: number) {
     console.log('ID AULA: ' + idAula);
 
-    this.aulas.forEach(
+    this.aulaService.ingressaSala(idAula, this.usuario.id).subscribe(
       data => {
-        if(data.id === idAula){
+        this.aula = data;
+        this.route.navigateByUrl('/timer');
+        console.log('Aluno ' + this.usuario.id + ' ingressou na aula ' + this.aula.id);
           localStorage.removeItem('aulaSelecionada');
-          localStorage.setItem('outraAulaSelecionada', JSON.stringify(data));
-        }
+          localStorage.setItem('outraAulaSelecionada', JSON.stringify(this.aula));
+          localStorage.setItem('block', 'true');
+          location.reload();
+
+          setTimeout(() => {
+            console.log('Aguardando...');
+          }, 500);
+      },
+      error => {
+        alert('Erro ao ingressar na aula' + error);
       }
     );
   }
 
   recuperaAulasDaArea(busca: string) {
-    if(busca === ''){
+    if (busca === '') {
       busca = 'none';
     }
     console.log('BUSCA: ' + busca);
 
-    setTimeout(() => {
       this.aulaService.recuperaAulasDaArea(this.usuario.id, this.usuario.area, busca)
     .subscribe( data => {
       this.aulas = data;
       console.log('AULAS DA AREA: ' + this.aulas);
     });
-    }, 2000);
 }
 }

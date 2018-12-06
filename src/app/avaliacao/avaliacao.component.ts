@@ -5,6 +5,7 @@ import { AvaliacaoService } from './avaliacaoService';
 import { Aula } from '../aula/aula';
 import { Usuario } from '../cadastro/usuario';
 import { Marker, MarkerInterface } from '../map/marker';
+import { AulaService } from '../aula/aulaService.service';
 
 @Component({
   selector: 'app-avaliacao',
@@ -40,7 +41,7 @@ export class AvaliacaoComponent implements OnInit {
   usuario: Usuario;
   markers: MarkerInterface[];
 
-  constructor(private avaliacaoService: AvaliacaoService) { }
+  constructor(private avaliacaoService: AvaliacaoService, private aulaService: AulaService, private route: Router) { }
 
   ngOnInit() {
     this.usuario = JSON.parse(localStorage.getItem('usuario'));
@@ -57,12 +58,21 @@ export class AvaliacaoComponent implements OnInit {
     console.log('AVALIACAO: ' + this.avaliacao);
     this.avaliacaoService.salvarAvaliacao(this.avaliacao);
     localStorage.removeItem('aulaSelecionada');
+    localStorage.removeItem('outraAulaSelecionada');
     this.markers = JSON.parse(localStorage.getItem('markers'));
 
     this.markers = this.markers.filter(
       mark => mark.aula.id !== this.avaliacao.aula_id);
 
     localStorage.setItem('markers', JSON.stringify(this.markers));
+
+    this.aulaService.sairSala(this.avaliacao.aula_id);
+
+    setTimeout(() => {
+      localStorage.setItem('block', 'false');
+      location.reload();
+      this.route.navigateByUrl('/home');      
+    }, 1000);
   }
 
 }

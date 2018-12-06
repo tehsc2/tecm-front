@@ -14,13 +14,13 @@
             </p>
         </mat-card-content>
         <mat-card-actions>
-          <button class="btn btn-md" style="background-color: white; color: #000; font-weight: 700;" (click)="ingressarAula(aula.id)" routerLink="/timer">Ingressar</button>
+          <button class="btn btn-md" style="background-color: white; color: #000; font-weight: 700;" (click)="ingressarAula(aula.id)">Ingressar</button>
         </mat-card-actions>
       </mat-card>
     </div>
   </div>
     <div *ngIf="aulas === null">
-      <form class="col-md-6 offset-md-3 mt-2" [formGroup]="aulaForm" (ngSubmit)="enviarDados()">
+      <form class="col-md-6 offset-md-3 mt-2">
         <h4>Criar/Editar Aula</h4>
         <div class="form-group">
           <label style="margin-top: 10px !important;" for="nome">Título </label>

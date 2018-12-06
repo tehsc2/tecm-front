@@ -48,6 +48,8 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('usuario'));
+    localStorage.removeItem('outraAulaSelecionada');
+    localStorage.removeItem('idAulaSelecionada');
 
     this.mapClicked();
     // userId = pega o usuario da sessao

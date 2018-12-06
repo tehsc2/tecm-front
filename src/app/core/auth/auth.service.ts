@@ -5,13 +5,14 @@ import { HeaderService } from '../../components/header/header.service';
 import { Usuario } from '../../cadastro/usuario';
 import { Router } from '../../../../node_modules/@angular/router';
 import { AutenticacaoService } from '../../cadastro/autenticacao.service';
+import { AulaService } from 'src/app/aula/aulaService.service';
 
 @Injectable()
 export class AuthService implements OnInit {
 
   usuario: Usuario;
 
-  constructor(public afAuth: AngularFireAuth, public header: HeaderService, private route: Router, private autenticacaoService: AutenticacaoService) { }
+  constructor(public afAuth: AngularFireAuth, public header: HeaderService, private aulaService: AulaService, private route: Router, private autenticacaoService: AutenticacaoService) { }
 
   ngOnInit() {
     this.usuario = <Usuario> JSON.parse(localStorage.getItem('usuario'));
@@ -26,6 +27,14 @@ export class AuthService implements OnInit {
           this.autenticacaoService.recuperarUsuarioPorEmail(res.user.email).subscribe(
             data => {
               this.usuario = data;
+              this.aulaService.recuperaSala(this.usuario.id).subscribe(
+                data => {
+                  localStorage.setItem('block', 'true');
+                },
+                error => {
+                  localStorage.setItem('block', 'false');
+                }
+              );
               localStorage.setItem('usuario', JSON.stringify(this.usuario));
               console.log('USUARIO: ' + localStorage.getItem('usuario'));
             }
@@ -50,6 +59,14 @@ export class AuthService implements OnInit {
         this.autenticacaoService.recuperarUsuarioPorEmail(res.user.email).subscribe(
           data => {
             this.usuario = data;
+            this.aulaService.recuperaSala(this.usuario.id).subscribe(
+              data => {
+                localStorage.setItem('block', 'true');
+              },
+              error => {
+                localStorage.setItem('block', 'false');
+              }
+            );
             localStorage.setItem('usuario', JSON.stringify(this.usuario));
             console.log('USUARIO: ' + localStorage.getItem('usuario'));
           }
@@ -80,6 +97,14 @@ export class AuthService implements OnInit {
         this.autenticacaoService.recuperarUsuarioPorEmail(res.user.email).subscribe(
           data => {
             this.usuario = data;
+            this.aulaService.recuperaSala(this.usuario.id).subscribe(
+              data => {
+                localStorage.setItem('block', 'true');
+              },
+              error => {
+                localStorage.setItem('block', 'false');
+              }
+            );
             localStorage.setItem('usuario', JSON.stringify(this.usuario));
             console.log('USUARIO: ' + localStorage.getItem('usuario'));
           }
@@ -91,7 +116,7 @@ export class AuthService implements OnInit {
   }
 
   doLogout() {
-        localStorage.clear();
+        localStorage.removeItem('usuario');
         this.afAuth.auth.signOut();
         location.reload();
         this.route.navigate(['/']);

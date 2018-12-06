@@ -31,6 +31,7 @@ export class AulaComponent implements OnInit {
     this.aulaService.salvarAula(this.aula);
     this.exibirAulas();
     this.recuperaAulas();
+    this.createForm();
   }
 
   recuperaAulas() {
@@ -64,16 +65,17 @@ export class AulaComponent implements OnInit {
       descricao: [''],
       duracao: [''],
       preco: 0,
-      status: [''],
+      status: ['online'],
       usuario_id: this.usuario.id
     });
   }
 
   editarAula(id: number) {
+    this.exibirCriarAula();
     this.aulaService.recuperarAulaById(id).subscribe(
       data => {
         this.aula = data;
-        console.log(this.aula)
+        console.log(this.aula);
 
         this.updateAulaForm(this.aula);
       });
@@ -86,7 +88,7 @@ export class AulaComponent implements OnInit {
       descricao: [aula.descricao],
       duracao: [aula.duracao],
       preco: [aula.preco],
-      status: [aula.status],
+      status: ['online'],
       usuario_id: [aula.usuario_id]
     });
   }

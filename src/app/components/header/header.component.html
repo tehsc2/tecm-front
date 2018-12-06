@@ -5,16 +5,16 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-            <a class="nav-link" routerLink="/home">Home </a>
+            <a class="nav-link" *ngIf="block === false" routerLink="/home">Home </a>
         </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/aulas">Minhas Aulas</a>
+        <a class="nav-link" *ngIf="block === false" routerLink="/aulas">Minhas Aulas</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/pagamento">Créditos</a>
+        <a class="nav-link" *ngIf="block === false" routerLink="/pagamento">Créditos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/lista-aulas">OUTRAS AULAS</a>
+        <a class="nav-link" *ngIf="block === false" routerLink="/lista-aulas">OUTRAS AULAS</a>
       </li>
     </ul>
     <div class="form-inline my-2 my-lg-0">
@@ -25,8 +25,8 @@
           {{nome}}
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="/perfil">Perfil</a>
-          <a class="dropdown-item" routerLink="/suporte">Ajuda</a>
+          <a class="dropdown-item" *ngIf="block === false" routerLink="/perfil">Perfil</a>
+          <a class="dropdown-item" *ngIf="block === false" routerLink="/suporte">Ajuda</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" (click)="logout()">Logout</a>
         </div>
