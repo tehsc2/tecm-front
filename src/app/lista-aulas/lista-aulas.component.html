@@ -1,9 +1,9 @@
 <main>
-    <div class="form-inline" style="margin-top: 20px; display: flex; justify-content: center;">
-          <input type="text" class="form-control mr-2" placeholder="O que você quer aprender hoje?" style="width: 500px;" #busca (keyUp)="recuperaAulasDaArea(busca.value)">
+    <div class="form-inline" style="margin-top: 20px; display: flex; justify-content: center; margin-bottom: 10px;">
+          <input type="text" class="form-control mr-2" placeholder="O que você quer aprender hoje?" style="width: 280px; margin-bottom: 5px;" #busca (keyUp)="recuperaAulasDaArea(busca.value)">
           <button type="submit" id="btn-criar" (click)="recuperaAulasDaArea(busca.value)" class="btn btn-tcm btn-sm">Buscar</button>
       </div>
-  <div style="display: flex; justify-content: flex-start; flex-wrap: wrap;">
+  <div style="display: flex; justify-content: center; flex-wrap: wrap;">
     <div *ngFor="let aula of aulas" style="padding: 2%; text-align: center;">
       <mat-card>
         <mat-card-content>
@@ -19,31 +19,8 @@
       </mat-card>
     </div>
   </div>
-    <div *ngIf="aulas === null">
-      <form class="col-md-6 offset-md-3 mt-2">
-        <h4>Criar/Editar Aula</h4>
-        <div class="form-group">
-          <label style="margin-top: 10px !important;" for="nome">Título </label>
-          <input class="form-control" id="nome" type="text" formControlName="titulo">
-          <label>Descrição </label>
-          <input class="form-control" type="text" formControlName="descricao">
-          <label>Duração </label>
-          <input class="form-control" type="text" formControlName="duracao" placeholder="Em minutos">
-          <label>Preço </label>
-          <input class="form-control" type="number" formControlName="preco" placeholder="Em reais">
-  
-          <label>Ativar aula </label>
-          <input type="radio" name="status" id="radio1" class="css-checkbox" formControlName="status" value="online"/>
-          <label for="radio1" class="css-label radGroup1">Sim</label>
-          <input type="radio" name="status" id="radio2" class="css-checkbox" checked="checked" formControlName="status" value="offline" />
-          <label for="radio2" class="css-label radGroup1">Não</label>
-          
-          <div class="mt-4" style="display: flex; justify-content: space-between;">
-            <button class="btn btn-md" style="background-color: #3f51b5; color: white; font-weight: 700;" [disabled]="!aulaForm.valid" (click)="salvarAula()">Salvar</button>
-            <button class="btn btn-md" style="background-color: red; color: white;font-weight: 700;" (click)="exibirAulas()">Cancelar</button>
-          </div>
-        </div>
-      </form>
-    </div>
+  <div style="display: flex; justify-content: center; margin-bottom: 20px; margin-top: 10px;">
+    <button type="submit" id="btn-criar" style="text-align: center; font-weight: 400;" (click)="recuperaTodasAulas()" class="btn btn-tcm btn-lg">Todas as Aulas</button>
+  </div>
   </main>
   

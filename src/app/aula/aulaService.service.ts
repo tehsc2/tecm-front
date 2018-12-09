@@ -27,6 +27,10 @@ export class AulaService{
       );
     }
 
+    recuperaTodasAulas(){
+        return this.http.get<Aula[]>(this.url.concat('/aula'));
+    }
+
     ingressaSala(idAula: number, idUsuario: number) {
         const json = {
             usuario_id: idUsuario, aula_id: idAula };

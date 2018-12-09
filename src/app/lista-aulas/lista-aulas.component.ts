@@ -49,6 +49,22 @@ export class ListaAulasComponent implements OnInit {
     );
   }
 
+  onKeydown(event) {
+    console.log(event);
+  }
+
+  recuperaTodasAulas(){
+    this.aulaService.recuperaTodasAulas().subscribe(
+      data => {
+        this.aulas = data;
+        console.log('Recuperou todas as aulas... ');
+      },
+      error => {
+        alert('Erro ao recuperar todas as aulas');
+      }
+    );
+  }
+
   recuperaAulasDaArea(busca: string) {
     if (busca === '') {
       busca = 'none';
