@@ -15,6 +15,8 @@ export class ListaAulasComponent implements OnInit {
   usuario: Usuario;
   aulas: AulaInterface[];
   aula: AulaInterface;
+  saldo: number;
+
   constructor(private aulaService: AulaService, private fb: FormBuilder, private route: Router) { }
 
   ngOnInit() {
@@ -29,11 +31,20 @@ export class ListaAulasComponent implements OnInit {
   ingressarAula(idAula: number) {
     console.log('ID AULA: ' + idAula);
 
+    this.saldo = JSON.parse(localStorage.getItem('saldo'));
+
     this.aulaService.ingressaSala(idAula, this.usuario.id).subscribe(
       data => {
         this.aula = data;
-        this.route.navigateByUrl('/timer');
-        console.log('Aluno ' + this.usuario.id + ' ingressou na aula ' + this.aula.id);
+
+        if(this.saldo === 0.0 || this.aula.preco > this.saldo){
+          alert("Você não possui saldo suficiente");
+          this.route.navigate(['/pagamento']);
+          this.aulaService.sairSala(this.aula.id);
+        }else{
+          this.saldo = this.saldo - this.aula.preco;
+          localStorage.setItem('saldo', JSON.stringify(this.saldo));
+          console.log('SALDO ATUAL: ' +  this.saldo);
           localStorage.removeItem('aulaSelecionada');
           localStorage.setItem('outraAulaSelecionada', JSON.stringify(this.aula));
           localStorage.setItem('block', 'true');
@@ -42,15 +53,13 @@ export class ListaAulasComponent implements OnInit {
           setTimeout(() => {
             console.log('Aguardando...');
           }, 500);
+          this.route.navigate(['/timer']);
+        }
       },
       error => {
         alert('Erro ao ingressar na aula' + error);
       }
     );
-  }
-
-  onKeydown(event) {
-    console.log(event);
   }
 
   recuperaTodasAulas(){

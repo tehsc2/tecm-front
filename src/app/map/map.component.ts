@@ -12,6 +12,7 @@ import { Localizacao } from './localizacao';
 import { UserServiceUser } from './user.service';
 import { routerNgProbeToken } from '../../../node_modules/@angular/router/src/router_module';
 import { Router } from '../../../node_modules/@angular/router';
+import { AulaService } from '../aula/aulaService.service';
 
 @Component({
   selector: 'app-map',
@@ -28,6 +29,8 @@ export class MapComponent implements OnInit {
 
   aulas: Aula[];
 
+  aula: Aula;
+
   saldo: number;
 
   user: Usuario;
@@ -42,7 +45,7 @@ export class MapComponent implements OnInit {
 
   infoWindowOpened = null;
 
-  constructor(private modalService: NgbModal, private recomendacaoService: RecomendacaoService, private header: HeaderService, private mapService: MapService, private userService: UserServiceUser, private route: Router) {
+  constructor(private aulaService: AulaService, private modalService: NgbModal, private recomendacaoService: RecomendacaoService, private header: HeaderService, private mapService: MapService, private userService: UserServiceUser, private route: Router) {
 
   }
 
@@ -54,7 +57,7 @@ export class MapComponent implements OnInit {
     this.mapClicked();
     // userId = pega o usuario da sessao
     // zoom do mapa
-    this.zoom = 18;
+    this.zoom = 15;
     // latitude inicial = localizacao atual
     this.lat = -23.5519104;
     // longitude inicial = localizacao atual
@@ -113,19 +116,33 @@ export class MapComponent implements OnInit {
   }
 
   ingressaAula(marker: MarkerInterface){
-    this.saldo = JSON.parse(localStorage.getItem('saldo'));
+    this.aulaService.ingressaSala(marker.aula.id, this.usuario.userId).subscribe(
+      data => {
+        this.aula = data;
 
-    if(this.saldo === 0.0 || marker.aula.preco > this.saldo){
-      alert("Você não possui saldo suficiente");
-      this.route.navigate(['/pagamento']);
-    }else{
-      localStorage.setItem('aulaSelecionada', JSON.stringify(marker));
-      this.saldo = this.saldo - marker.aula.preco;
-      localStorage.setItem('saldo', JSON.stringify(this.saldo));
-      console.log('SALDO ATUAL: ' +  this.saldo);
-      console.log('AULA SELECIONADA: ' + marker.aula.titulo);
-      this.route.navigate(['/timer']);
-    }
+        if(this.saldo === 0.0 || this.aula.preco > this.saldo){
+          alert("Você não possui saldo suficiente");
+          this.route.navigate(['/pagamento']);
+          this.aulaService.sairSala(this.aula.id);
+        }else{
+          this.saldo = this.saldo - this.aula.preco;
+          localStorage.setItem('saldo', JSON.stringify(this.saldo));
+          console.log('SALDO ATUAL: ' +  this.saldo);
+          localStorage.removeItem('outraAulaSelecionada');
+          localStorage.setItem('aulaSelecionada', JSON.stringify(this.aula));
+          localStorage.setItem('block', 'true');
+          location.reload();
+
+          setTimeout(() => {
+            console.log('Aguardando...');
+          }, 500);
+          this.route.navigate(['/timer']);
+        }
+      },
+      error => {
+        alert('Erro ao ingressar na aula' + error);
+      }
+    );
   }
 
   // Fecha a info window se for abrir outra
@@ -179,6 +196,6 @@ export class MapComponent implements OnInit {
   
         this.usuario.markers = this.markers;
         console.log(this.usuario);
-        }, 15000);
+        }, 5000);
   }
 }

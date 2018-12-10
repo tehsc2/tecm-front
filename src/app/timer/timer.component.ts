@@ -20,10 +20,10 @@ export class TimerComponent implements OnInit {
   constructor(private route: Router) { }
 
   ngOnInit() {
-    this.marker = JSON.parse(localStorage.getItem('aulaSelecionada'));
-    console.log('MARKER: ' + this.marker);
+    this.marker.aula = JSON.parse(localStorage.getItem('aulaSelecionada'));
+    console.log('MARKER: ' + this.marker.aula.titulo);
 
-    if(this.marker === null){
+    if(this.marker === null || this.marker === undefined){
       this.aula = JSON.parse(localStorage.getItem('outraAulaSelecionada'));
       console.log('AULA: ' + this.aula.titulo);
       //falta buscar a localizacao do instrutor

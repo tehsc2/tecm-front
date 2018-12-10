@@ -9,7 +9,7 @@
   <agm-marker class="markers"
       *ngFor="let m of usuario.markers; let i = index"
       (markerClick)="clickedMarker(infoWindow)"
-      [latitude]="m.latitude"
+      [latitude]="m.latitude - (i * 0.0001)"
       [longitude]="m.longitude"
       [markerDraggable]="m.draggable"
       (dragEnd)="markerDragEnd(m, $event)"
@@ -17,11 +17,15 @@
 
     <!-- Coloca como se fosse um ID no componente HTML -->
     <agm-info-window #infoWindow>
-      <strong>{{m.aula.titulo}}</strong><br>
-      Duração: {{m.aula.duracao}} minutos<br>
-      Preço: R$ {{m.aula.preco}}<br>
-      <button (click)='openVerticallyCentered(ingressa, m.aula.usuario_id)'>Ver Instrutor</button>
-      <button (click)='ingressaAula(m)'>Ingressar</button>
+      <div style="font-weight: 700; display: inline; flex-wrap: wrap; font-size: 16px;">
+          <strong>{{m.aula.titulo}}</strong><br>
+          Duração: {{m.aula.duracao}} minutos<br>
+          Preço: R$ {{m.aula.preco}}<br>
+          <div style="margin-top: 10px;">
+              <button (click)='openVerticallyCentered(ingressa, m.aula.usuario_id)' class="btn btn-tcm-default" style="margin-right: 10px;">Ver Instrutor</button>
+              <button (click)='ingressaAula(m)' class="btn btn-tcm">Ingressar</button>
+          </div>
+      </div>
     </agm-info-window>
 
     <ng-template #ingressa let-c="close" let-d="dismiss">
