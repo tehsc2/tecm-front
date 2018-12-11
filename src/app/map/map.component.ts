@@ -94,8 +94,8 @@ export class MapComponent implements OnInit {
           console.log('MARKERS: ' + this.markers);
   
         this.usuario.markers = this.markers;
-        console.log(this.usuario);
-        }, 12000);
+        console.log("USUARIO: " + this.usuario);
+        }, 16000);
       }
 
       this.usuario.markers = this.markers;
@@ -185,7 +185,7 @@ export class MapComponent implements OnInit {
   getRecomendacoes(){
     this.mapService.listarAulasRecomendadas(this.user.id).subscribe(
           data => {
-            console.log(data);
+            console.log("Recebido da API.." + data);
             this.markers = data;
             localStorage.setItem('markers', JSON.stringify(this.markers));
           }
@@ -195,7 +195,7 @@ export class MapComponent implements OnInit {
           console.log('MARKERS: ' + this.markers);
   
         this.usuario.markers = this.markers;
-        console.log(this.usuario);
-        }, 5000);
+        console.log("USUARIO: " + this.usuario);
+        }, 7000);
   }
 }
